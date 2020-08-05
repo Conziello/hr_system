@@ -1,0 +1,4 @@
+
+#pagination,.pagination { margin: 0 0 20px 20px; padding: 0 }
+#pagination li,.pagination li{ float: left; display: block; color: #0063DC; text-decoration: none; margin-right: 5px; padding: 5px 10px; background-color: #ccc; border: 1px solid #999;cursor:pointer; border-radius:3px }
+#pagination li:hover,.pagination li:hover { background: #e5bb58; border: 1px solid #999; color: #000;  }
