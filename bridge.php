@@ -218,7 +218,7 @@ case 1:
 								</div>
 								
 							
-								<div class="cleaner" style="border-bottom:2px solid #75c5cf"></div>
+							
 								<div class="col-sm-6 mar" id="personal">
 								<div class="panel widget">
 
@@ -289,6 +289,7 @@ case 1:
 								
 								</div>
 								</div>
+								<br/>
 								
 								<div class="form-group">
                         <label style="float:left" class="col-sm-4">Languages:</label>
@@ -307,12 +308,13 @@ case 1:
 								echo"<option value=\"".$k."θ".$name."\">".$name."</option>";
 						}
 		echo'</select>
-</div>
-
-</div>
-
-
 <div id="languages" style="width:100%;"></div>
+</div>
+
+</div>
+
+
+
 
 								         <div class="form-group">
                         <label style="float:left" class="col-sm-4">Gender:</label>
@@ -326,6 +328,7 @@ case 1:
 								</div>
 								</div>
 								</div>
+								<br/>
 								     <div class="form-group">
                         <label style="float:left" class="col-sm-4">ID NO:</label>
                         <div class="col-sm-8 controls">
@@ -366,6 +369,7 @@ case 1:
                                 <input type="text" id="phyadd" name="phyadd" class="in_field"/> 
                                 </div>
                                 </div>
+                                <br/>
                                 
 									<div class="form-group">
                         <label style="float:left" class="col-sm-4">Location:</label>
@@ -576,6 +580,7 @@ case 1:
 								</select>
 								</div>
 								</div>
+								<br/>
 								 <div class="form-group">
                         <label style="float:left" class="col-sm-4">Known Health Problems/Alergies:<span style="color:#f00">*</span></label>
                         <div class="col-sm-8 controls">
@@ -644,8 +649,11 @@ case 1:
 								</div>
 								
 								<div class="panel-body">
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Course:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
 
-								<a class="labels">Course:</a>
+								
 								<div class="ui-widget" style="float:right; margin-right:8%">
 	<select id="certificate"  class="combos">
 		<option value="">Select one...</option>';
@@ -658,6 +666,8 @@ case 1:
 								echo"<option value=\"".$k."θ".$name."\">".$name."</option>";
 						}
 		echo'</select></div>
+</div>
+</div>
 		<div class="cleaner_h5"></div>
 
 	
@@ -677,7 +687,10 @@ case 1:
 							<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>EXPERIENCE DETAILS</h5>	
 							</div>
 <div class="panel-body">
-						<a class="labels">Experience:</a>
+ <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Experience:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+					
                                		
 								<div class="ui-widget"  style="float:right; margin-right:8%">
 	<select id="experience" class="combos">
@@ -692,9 +705,10 @@ case 1:
 						}
 		echo'</select>
 </div>
-
-			<div class="cleaner_h5"></div>								
+								
 	<div id="experiences" style="width:100%;"></div>
+	</div>
+</div>
 	</div>
 	</div>
 	</div>
@@ -706,8 +720,10 @@ case 1:
 								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>PAYSLIP DETAILS</h5>
 								</div>
 								<div class="panel-body">
-								
-								<a class="labels">Bank:</a>
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Bank:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+					
 		                       <div class="ui-widget"  style="float:right; margin-right:8%">
 						<select id="bank" class="combos">
 				<option value="">Select one...</option>';
@@ -721,32 +737,63 @@ case 1:
 								}
 								echo'</select>
 								</div>
-								<div class="cleaner_h5"></div>
+								</div>
+								</div>
+								<br/>
+						
+						
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Brnach Name:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
 
-								 <a class="labels">Branch Name:</a>
+								 
                                 <input type="text" id="branchname" name="field" class="in_field"/> 
-								<div class="cleaner_h5"></div>
+                                </div>
+                                </div><br/>
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">EFT CODE:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
 
-								 <a class="labels">EFT Code:</a>
+							
                                 <input type="text" id="eftcode" name="field" class="in_field"/> 
-								<div class="cleaner_h5"></div>
+                                </div></div><br/>
+                                
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Acc No:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
 
-								 <a class="labels">A/C No:</a>
+								
                                 <input type="text" id="acno" name="field" class="in_field"/> 
-								<div class="cleaner_h5"></div>
+                                </div>
+                                </div>
+                                <br/>
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Pin No:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+						
 
-								
-
-
-							    <a class="labels">Pin No:</a>
                                 <input type="text" id="pinno" name="field" class="in_field"/> 
-								<div class="cleaner_h5"></div>	
+                                </div>
+                                </div>
+                                <br/>
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">NHIF No:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
 								
-								 <a class="labels">NHIF No.:</a>
+								
                                 <input type="text" id="nhif" name="field" class="in_field"/> 
-								<div class="cleaner_h5"></div>
-								 <a class="labels">NSSF No.:</a>
+                                </div>
+                                </div>
+                                <br/>
+                                
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">NSSF No:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+								 
                                 <input type="text" id="nssf" name="field" class="in_field"/> 
+                                </div>
+                                </div>
+                                
 								<div class="cleaner_h5"></div>						
 									
 								</div>
@@ -762,8 +809,14 @@ case 1:
 								
 								</div>
 								<div class="panel-body">
-								<a class="labels">Skill:</a>
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Skill:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+								
 								<input style=" text-transform:uppercase" type="text" id="skill" name="field" class="in_field" placeholder="Type a Skill Press and Enter..."/> 
+								</div>
+								</div>
+								
 								<div class="cleaner_h5"></div>
 								<div id="skills" style="width:100%;"></div>
 								</div>
@@ -777,8 +830,13 @@ case 1:
 								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>HOBBIES</h5>
 								</div>
 								<div class="panel-body">
-								<a class="labels">Hobby:</a>
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Hobby:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+								
 								<input type="text" id="hobby" name="field" class="in_field" placeholder="Type a Hobby Press and Enter..."/> 
+								</div>
+								</div>
 								<div class="cleaner_h5"></div>
 								<div id="hobbies" style="width:100%;"></div>
 								<div class="cleaner"></div>
@@ -796,15 +854,17 @@ case 1:
 								
 								</form>
 								
-								
+								<div class="col-sm-8">            
+                    <div class="tab-content mgbt-xs-20">
+                      <div class="tab-pane active" id="tab6">
 
 								
 								<form method="post" action="upload.php" enctype="multipart/form-data" target="leiframe">
-      							
-								<dd class="custuploadblock_js">
-								<input style="opacity:0; float:left;" name="image" id="photoupload"  
-								class="transfileform_js" type="file">
-								</dd>
+      							 <dd class="custuploadblock_js">
+                        <input style="opacity:0; float:left;" name="image" id="photoupload"  
+                        class="transfileform_js" type="file">
+                        </dd>
+								
 								<iframe name="leiframe" id="leiframe" class="leiframe">
 								</iframe>
                             	<input type="hidden" id="stamp" name="stamp" value="'.$emp.'"/>
@@ -812,7 +872,9 @@ case 1:
 								<div class="cleaner_h5"></div>
      							<input type="submit" value="upload" id="send"  style="width:40%;margin-left:40%; float:left; cursor:pointer"class="in_field"/>
 								</form>
-								
+								</div>
+								</div>
+								</div>
 								
 								<div class="cleaner_h5"></div>
 								<h5 class="panel-title">OTHER FILES UPLOAD</h5>
@@ -1165,9 +1227,14 @@ echo'</div>
 								</select>
 								<div class="cleaner_h5"></div>
 								</div>
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Job description:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
 								
-								<a class="labels">Job Description:</a>
 								<textarea class="textarea" id="jobdesc">'.stripslashes($rowx['jobdesc']).'</textarea>
+								
+								</div>
+								</div>
 								<div class="cleaner"></div>
 								</div>
 								</div>
