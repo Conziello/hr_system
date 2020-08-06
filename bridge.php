@@ -477,7 +477,7 @@ case 1:
                         <label style="float:left" class="col-sm-4">Branch:<span style="color:#f00">*</span></label>
                         <div class="col-sm-8 controls">
 								
-								<div class="ui-widget" style="float:right; margin-right:8%">
+								
 	<select id="branch" class="combos">
 	<option value="" selected="selected" disabled="disabled">Select One...</option>
 								';
@@ -489,14 +489,15 @@ case 1:
 								echo"<option value=\"".$name."\">".$name."</option>";
 						}
 		echo'</select>
-</div>
+		<br/>
+
 </div>
 </div><br/>
 										<div class="form-group">
                         <label style="float:left" class="col-sm-4">Dept:<span style="color:#f00">*</span></label>
                         <div class="col-sm-8 controls">
 								
-                                <div class="ui-widget" style="float:right; margin-right:8%">
+                                <div class="ui-widget">
 	<select id="dept" class="combos"><option value="" selected="selected" disabled="disabled">Select One...</option>
 								';
 		$resulta =mysql_query("select * from dept order by name");
@@ -506,7 +507,7 @@ case 1:
 								$name=stripslashes($row['name']);
 								echo"<option value=\"".$name."\">".$name."</option>";
 						}
-		echo'</select>
+		echo'</select><br/>
 </div>
 </div>
 
@@ -517,7 +518,7 @@ case 1:
                         <label style="float:left" class="col-sm-4">Position:<span style="color:#f00">*</span></label>
                         <div class="col-sm-8 controls">
 								
-                               		<div class="ui-widget" style="float:right; margin-right:8%">
+                               		<div class="ui-widget">
 	<select id="pos" class="combos">
 		<option value="">Select one...</option>';
 		$resulta =mysql_query("select * from positions order by name");
@@ -528,27 +529,37 @@ case 1:
 								echo"<option value=\"".$name."\">".$name."</option>";
 						}
 		echo'</select>
+		<br/>
 </div>
 </div>
 </div>
+<br/>
 <br/>
 <br/>
 								<div class="cleaner_h5"></div>
 								<div style="display:none">
-								<a class="labels">Clearance:</a>
+								<div class="form-group">
+								<label style="float:left" class="col-sm-4">Clearance:<span style="color:#f00">*</span></label>
+								<div class="col-sm-8 controls">
                                 <select class="select" id="clearance" name="clearance" style="float:right ;text-transform:uppercase">
 								<option value="1">Level 1</option>
 								<option value="2">Level 2</option>
 								</select>
+								</div>
+								</div>
 								<div class="cleaner_h5"></div>
 								</div>
 								
-								<a class="labels">Job Description:</a>
+								<div class="form-group">
+								<label style="float:left" class="col-sm-4">Job Description:<span style="color:#f00">*</span></label>
+								<div class="col-sm-8 controls">
 								<textarea class="textarea" id="jobdesc"></textarea>
 					</div>
-						
+						</div>
+						</div>
 						</div>
 								</div>
+								<br/>
 								<br/>
 								
 								
@@ -689,8 +700,7 @@ case 1:
 <div class="panel-body">
  <div class="form-group">
                         <label style="float:left" class="col-sm-4">Experience:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-					
+                        <div class="col-sm-8 controls">				
                                		
 								<div class="ui-widget"  style="float:right; margin-right:8%">
 	<select id="experience" class="combos">
@@ -703,9 +713,8 @@ case 1:
 								$name=stripslashes($row['name']);
 								echo"<option value=\"".$k."θ".$name."\">".$name."</option>";
 						}
-		echo'</select>
-</div>
-								
+							echo'</select>
+</div>							
 	<div id="experiences" style="width:100%;"></div>
 	</div>
 </div>
@@ -713,6 +722,9 @@ case 1:
 	</div>
 	</div>
 	
+	</div>
+	
+	</div>
 		<div class="cleaner"></div>		
 		<div class="col-md-6">
 		<div class="panel widget">
@@ -875,8 +887,10 @@ case 1:
 								</div>
 								</div>
 								</div>
-								
+								<br/></br/>
 								<div class="cleaner_h5"></div>
+								<br/><br/>
+								<br/>
 								<h5 class="panel-title">OTHER FILES UPLOAD</h5>
 								<div class="cleaner_h5"></div>
 								<div class="content">
@@ -939,44 +953,44 @@ case 1:
 					unset($_SESSION[$cat][$param]);
 					
 					break;
-					
-						case 4:
-						
-						$a=$_GET['a'];
-						echo"<script>$('#emp1').parent().find('input:first').focus().width(250);</script>";	
-			echo' <div id="modalDiv"></div>	
+
+    case 4:
+
+        $a=$_GET['a'];
+        echo"<script>$('#emp1').parent().find('input:first').focus().width(250);</script>";
+        echo' <div id="modalDiv"></div>	
 				<div id="alertDiv" style="min-height:70px; width:320px"  class="bounceIn appear" data-start="200" style="opacity:1000;">
 					<div id="tit" style="width:318px; background:#75c5cf; padding:5px 10px;">
-			<h5 style="margin:0px; color:#333; padding:3px">SELECT AN EMPLOYEE:';						
-echo'<img src="images/delete.png" style="width:20px; height:20px; float:right; border:1px solid #fff; border-radius:2px; cursor:pointer" onclick="hidediv()"></h5></div>
+			<h5 style="margin:0px; color:#333; padding:3px">SELECT AN EMPLOYEE:';
+        echo'<img src="images/delete.png" style="width:20px; height:20px; float:right; border:1px solid #fff; border-radius:2px; cursor:pointer" onclick="hidediv()"></h5></div>
 				<div class="cleaner_h5"></div>
 						<input type="hidden" id="ser" name="ser"  value="'.$a.'"/>
 						<div class="ui_widget"  style="margin-left:10px;float:left; width:270px">
 				<select id="emp1" style="width:260px; margin-left:10px;">
 		<option value="">Select one...</option>';
-		$resulta =mysql_query("select * from employee where status=1 and ".$_SESSION['clearance']." order by fname");
-							$num_resultsa = mysql_num_rows($resulta);	
-							for ($i=0; $i <$num_resultsa; $i++) {
-								$rowa=mysql_fetch_array($resulta);
-								echo'<option value="'.stripslashes($rowa['emp']).'">'.stripslashes($rowa['fname']).' '.stripslashes($rowa['mname']).' '.stripslashes($rowa['lname']).'-'.stripslashes($rowa['emp']).'</option>';
-							}
-		echo'
+        $resulta =mysql_query("select * from employee where status=1 and ".$_SESSION['clearance']." order by fname");
+        $num_resultsa = mysql_num_rows($resulta);
+        for ($i=0; $i <$num_resultsa; $i++) {
+            $rowa=mysql_fetch_array($resulta);
+            echo'<option value="'.stripslashes($rowa['emp']).'">'.stripslashes($rowa['fname']).' '.stripslashes($rowa['mname']).' '.stripslashes($rowa['lname']).'-'.stripslashes($rowa['emp']).'</option>';
+        }
+        echo'
 	</select>
 	</div>
 				</div>';
-				
-							
-							break;
-							
+
+
+        break;
+
 							case 5:
-							
+
 							$_SESSION['lan']=$_SESSION['skl']=$_SESSION['hobby']=$_SESSION['exp']=$_SESSION['edu']=array();
-							$result = mysql_query("insert into log values('','".$username." accesses Edit Employee Panel.Employee No:".$_GET['param']."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
-							$param=$_GET['param'];		
-							$resultx =mysql_query("select * from employee where emp='".$param."'");		
+							$result = mysql_query("insert into log values('','".$username." accesses Edit Employee Panel.Employee No:".$_GET['param']."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+							$param=$_GET['param'];
+							$resultx =mysql_query("select * from employee where emp='".$param."'");
 							$rowx=mysql_fetch_array($resultx);
 							$emp=stripslashes($rowx['emp']);
-							echo"<script>$('.combos').parent().find('input:first').width(180);	</script>";	
+							echo"<script>$('.combos').parent().find('input:first').width(180);	</script>";
 								echo'<script>
 								$(window).bind("keydown",
 								function(evt){
@@ -991,15 +1005,25 @@ echo'<img src="images/delete.png" style="width:20px; height:20px; float:right; b
 									
 							  
 							   </script>';
-								
-								
-							
+
+
+
 								echo'
-								<div style="width:100%; background:#272727; padding:3px 0 1px 0"  id="headclose">
-								<h3 style="color:#ffdd17; margin-top:3px">EDIT EMPLOYEE INFORMATION:'.stripslashes($rowx['fname']).' '.stripslashes($rowx['mname']).' '.stripslashes($rowx['lname']).'-P.F No:'.stripslashes($rowx['emp']).'
+							<div class="vd_container">
+								<div class="vd_content clearfix">
+
+								<div class="vd_content-section clearfix">
+								<div class="row" id="form-basic">
+								  <div class="col-md-12">
+									<div class="panel widget">
+								
+								<div class="panel-heading ">
+									
+									<h3 class ="panel-title" style="color:#0a0a0a; margin-top:3px"> <span class="menu-icon"> <i class="fa fa-th-list"></i></span>EDIT EMPLOYEE INFORMATION:'.stripslashes($rowx['fname']).' '.stripslashes($rowx['mname']).' '.stripslashes($rowx['lname']).'-P.F No:'.stripslashes($rowx['emp']).'
 								
 								<div id="saveclose" style="width:50px; height:30px;float:right;margin-right:10px;">
-								<input type="button" value="Exit" id="submit"  style="padding:5px 5px; border-color:#fff; background:#f00; float:right; cursor:pointer;width:50px" class="in_field" onclick="hidenewstude();"/></div>
+								<input type="button" value="Exit" id="submit"  style="padding:5px 5px; border-color:#fff; background:#f00; float:right; cursor:pointer;width:50px" class="in_field" onclick="hidenewstude();"/>
+								</div>
 								
 								<div style="width:50px; height:30px;float:right;margin-right:10px;">
 								<input type="button" value="Save" id="submit"  style="padding:5px 5px; border-color:#fff; background:#75c5cf; float:right; cursor:pointer;width:50px" class="in_field" onclick="addnewemp(2);"/>
@@ -1007,31 +1031,63 @@ echo'<img src="images/delete.png" style="width:20px; height:20px; float:right; b
 								<div id="newemployee" style="width:50px; height:30px;float:right;margin-right:10px;"></div>
 								</h3>
 								</div>
+								</div>
 								
-								<div id="newstude" class="col-sm-12 " style="overflow-y:auto">
-								<div class="cleaner" style="border-bottom:2px solid #75c5cf"></div>
-								<div class="col-sm-3 mar" id="personal">
-								<h5>PERSONAL DETAILS</h5>
-								<form>
-								<a class="labels">PF No:<span>*</span></a>
-                                <input type="text" id="emp" name="emp" class="in_field" value="'.$emp.'" style="border-color:#f00" disabled="disabled"/> 
-								<div class="cleaner_h5"></div>
-								<a class="labels">Biometric Id:<span>*</span></a>
-                                <input type="text" id="biomid" name="biomid" class="in_field" value="'.stripslashes($rowx['biomid']).'"/> 
-								<div class="cleaner_h5"></div>
-								<a class="labels">F.Name:<span>*</span></a>
+								<div id="newstude" class="col-sm-6 " style="overflow-y:auto">
+								<div class="panel widget">
+
+								<div class="panel-heading vd_bg-grey">
+								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>PERSONAL DETAILS</h5>
+								</div>
+								
+								
+								<div class="panel-body">
+
+								<form class="form-horizontal" role="form">
+								           <div class="form-group">
+                        <label style="float:left" class="col-sm-4">PF No:</label>
+                        <div class="col-sm-8 controls">
+                         <input type="text" id="emp" name="emp" class="in_field" value="'.$emp.'" style="border-color:#f00" disabled="disabled"/> 
+									</div>
+                        </div>
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Biometric Id:</label>
+                        <div class="col-sm-8 controls">
+								
+                                <input type="text" id="biomid" name="biomid" class="in_field" value="'.stripslashes($rowx['biomid']).'"/>
+                                 </div>
+                        </div> 
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">F.Name:</label>
+                        <div class="col-sm-8 controls">
                                 <input type="text" id="fname" name="field" class="in_field"onkeyup="validatealp(\'fname\')" value="'.stripslashes($rowx['fname']).'"/>
-								<div class="cleaner_h5"></div>
-								 <a class="labels">M. Name:</a>
+								</div>
+								</div>
+								
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">M. Name:</label>
+                        <div class="col-sm-8 controls">
                                 <input type="text" id="mname" name="field" class="in_field" value="'.stripslashes($rowx['mname']).'"/> 
-								<div class="cleaner_h5"></div>
-								 <a class="labels">L. Name:<span>*</span></a>
+								 </div>
+                                </div>
+                                 
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">L. Name:</label>
+                        <div class="col-sm-8 controls">
                                 <input type="text" id="lname" name="field" class="in_field"  value="'.stripslashes($rowx['lname']).'"/> 
-								<div class="cleaner_h5"></div>
-								 <a class="labels">D.O.B:</a>
+								</div>
+                                </div>
+                                 
+									<div class="form-group">
+                        <label style="float:left" class="col-sm-4">D.O.B:</label>
+                        <div class="col-sm-8 controls">
 							  <input id="dob" name="dob" class="in_field" placeholder="" type="text" readonly="readonly" value="'.stripslashes($rowx['dob']).'">
-							   <div class="cleaner_h5"></div>
-								 <a class="labels">Mar. Status:</a>
+							   </div>
+							  </div>
+							  
+							   <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Mar. Status:</label>
+                        <div class="col-sm-8 controls">
 								 <select class="select" id="mar" name="mar" style="float:right; text-transform:uppercase">
 								 <option value="'.stripslashes($rowx['marital']).'" selected="selected">'.stripslashes($rowx['marital']).'</option>
 								<option value="Single">Single</option>
@@ -1040,15 +1096,21 @@ echo'<img src="images/delete.png" style="width:20px; height:20px; float:right; b
 								<option value="Divorced">Divorced</option>
 								<option value="Widowed">Widowed</option>
 								</select> 
-								<div class="cleaner_h5"></div>
-								 <a class="labels">Languages:</a>
+								</div>
+								</div>
+								<br/>
+								
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Languages:</label>
+                        <div class="col-sm-8 controls">
+								 
                                		
 								<div class="ui-widget"  style="float:right; margin-right:8%">
 	<select id="language" class="combos">
 		<option value="">Select one...</option>';
-		
+
 		$resulta =mysql_query("select * from languages order by name");
-							$num_resultsa = mysql_num_rows($resulta);	
+							$num_resultsa = mysql_num_rows($resulta);
 							for ($i=0; $i <$num_resultsa; $i++) {
 								$row=mysql_fetch_array($resulta);
 								$name=stripslashes($row['name']);
@@ -1066,50 +1128,78 @@ $parts=explode(';',stripslashes($rowx['languages']));
 		echo'<div class="tag alert-info alert-dismissable" id="lantag'.$key.'"><button type="button" class="close" onclick="dismisslan(\''.$key.'\')"  aria-hidden="true">&times;</button>'.$val.'</div>';
 		}
 		}
-echo'</div>
-								<div class="cleaner_h5"></div>
-								
+echo'</div></div>
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Gender:</label>
+                        <div class="col-sm-8 controls">
 								 
 								
-								<a class="labels" style="margin-right:30px">Gender:<span>*</span></a>
 								<div id="radio">';
-								
+
 		if(stripslashes($rowx['gender'])=='MALE'){
 			 echo'<input  id="maleGender" name="gender" type="radio" checked="checked" value="male" class="radio"/><label for="maleGender">Male</label>
-		<input  id="femaleGender" name="gender" type="radio" value="female" class="radio"/><label for="femaleGender">Female</label>'; 
+		<input  id="femaleGender" name="gender" type="radio" value="female" class="radio"/><label for="femaleGender">Female</label>';
 								 }
 							 else{
           echo'<input  id="maleGender" name="gender" type="radio" value="male" class="radio"/><label for="maleGender">Male</label>
 		<input  id="femaleGender" name="gender" type="radio" value="female"  checked="checked" class="radio"/><label for="femaleGender">Female</label>';}
 		echo'
+							</div>
+								</div>
 								</div>
 			
-								<a class="labels">ID NO:<span>*</span></a>
+								   <div class="form-group">
+                        <label style="float:left" class="col-sm-4">ID NO:</label>
+                        <div class="col-sm-8 controls">
                                 <input type="text" id="idno" name="field" class="in_field" onkeyup="validatenum(\'idno\')"  value="'.stripslashes($rowx['idno']).'"/>
-								<div class="cleaner_h5"></div>
-								 <a class="labels">Pin No:</a>
+								</div>
+								</div>
+								
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Pin No:</label>
+                        <div class="col-sm-8 controls">
                                 <input type="text" id="pinno" name="field" class="in_field" value="'.stripslashes($rowx['pinno']).'" /> 
-								<div class="cleaner_h5"></div>	
-								<a class="labels">Phone No:<span>*</span></a>
+									</div>
+								</div>
+								   <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Phone No:</label>
+                        <div class="col-sm-8 controls">
 								 <input type="text" id="phone" name="phone" class="in_field"  value="'.stripslashes($rowx['phone']).'" onkeyup="validatenum(\'phone\')"/> 
-								<div class="cleaner_h5"></div>
+								</div>
+								</div>
+								
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Phone No[2]:</label>
+                        <div class="col-sm-8 controls">
 								<div id="music"></div>
-								<a class="labels">Phone No[2]:</a>
 								 <input type="text" id="phone2" name="phone2" class="in_field"  value="'.stripslashes($rowx['phone2']).'" onkeyup="validatenum(\'phone2\')"/> 
-								<div class="cleaner_h5"></div>
-								<a class="labels">Email Add:</a>
+									</div>
+								</div>
+								
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Email Add:</label>
+                        <div class="col-sm-8 controls">
 								 <input type="text" id="emailadd" name="emailadd"  value="'.stripslashes($rowx['email']).'" class="in_field" style="text-transform:lowercase"/> 
-								<div class="cleaner_h5"></div>
-								<a class="labels">Phy Add:</a>
+								 </div>
+								 </div>
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Phy Add:</label>
+                        <div class="col-sm-8 controls">
                                 <input type="text" id="phyadd" name="phyadd"  value="'.stripslashes($rowx['phyadd']).'" class="in_field"/> 
-								<div class="cleaner_h5"></div>
-								 <a class="labels">Location:</a>
+								 </div>
+                                </div>
+                                <br/>
+                                
+									<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Location:</label>
+                        <div class="col-sm-8 controls">
+								
                                		
-								<div class="ui-widget" style="float:right; margin-right:8%">
+								<div class="ui-widget">
 	<select id="town" class="combos">
 			 <option value="'.stripslashes($rowx['town']).'" selected="selected">'.stripslashes($rowx['town']).'</option>';
 		$resulta =mysql_query("select * from towns order by name");
-							$num_resultsa = mysql_num_rows($resulta);	
+							$num_resultsa = mysql_num_rows($resulta);
 							for ($i=0; $i <$num_resultsa; $i++) {
 								$row=mysql_fetch_array($resulta);
 								$name=stripslashes($row['name']);
@@ -1117,99 +1207,108 @@ echo'</div>
 						}
 		echo'</select>
 </div>
+</div>
+</div>
 <div class="cleaner_h5"></div>
 						
 								
 								</div>
-							
-								<div class="col-sm-3 mar" id="personal">
-								
-								<div class="panel-heading vd_bg-grey">
-								<h5>EMPLOYMENT DETAILS</h5>
+								</div>
 								</div>
 								
-								<a class="labels">Basic Sal:<span>*</span></a>
+								</form>
+								</div>
+							
+							
+								<div class="col-sm-6 mar" id="personal">
+								<div class="panel widget">
+								<div class="panel-heading vd_bg-grey">
+								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>EMPLOYMENT DETAILS</h5>
+								</div>
+								
+								<div class="panel body">
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Basic Sal:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
 								<input type="text" id="sal" name="sal" class="in_field" onkeyup="validatenum(\'sal\')"  value="'.stripslashes($rowx['salary']).'" />
-								<div class="cleaner_h5"></div>
-								 <a class="labels">Emp Category:</a>
+								</div>
+								</div>
+								<br/>
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Emp Category:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
                                 <select class="select" id="empcateg" name="empcateg" style="float:right; text-transform:uppercase">
                                 <option value="'.stripslashes($rowx['empcateg']).'" selected="selected">'.stripslashes($rowx['empcateg']).'</option>
 								<option value="Normal">Normal</option>
 								<option value="NIL_PAYE">NIL PAYE</option>
 								<option value="NIL_NSSF">NIL NSSF</option>
 								</select> 
-								<div class="cleaner_h5"></div>
-
-
-								 <a class="labels">D.O.E:<span>*</span></a>
+								</div>
+								</div>
+								<br/>
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">D.O.E:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
 								<input id="datepicker2" name="doe" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($rowx['employdate']).'" >
-							   <div class="cleaner_h5"></div>
-								
-								<a class="labels" style="margin-right:30px">Emp. Type:<span>*</span></a>
+							 </div>
+								</div>
+								<br/>
+								<br/>
+							 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Emp. Type:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
 								<div id="radio2">';
-								
+
 		if(stripslashes($rowx['emptype'])=='PERMANENT'){
 			 echo'<input  id="Permanent" name="emptype" type="radio" checked="checked" value="Permanent" class="radio" onclick="hidecontract()"/><label for="Permanent">Permanent</label>
 		<input  id="Contract" name="emptype" type="radio" value="Contract" class="radio" onclick="showcontract()"/><label for="Contract">Contract</label>
 		<input  id="Other" name="emptype" type="radio" value="Other" class="radio" onclick="hidecontract()"/><label for="Other">Other</label>
-		'; 
+		';
 								 }
 								 else if(stripslashes($rowx['emptype'])=='CONTRACT'){
 			 echo'<input  id="Permanent" name="emptype" type="radio" value="Permanent" class="radio" onclick="hidecontract()"/><label for="Permanent">Permanent</label>
 		<input  id="Contract" name="emptype" type="radio" value="Contract"  checked="checked" class="radio" onclick="showcontract()"/><label for="Contract">Contract</label>
 		<input  id="Other" name="emptype" type="radio" value="Other" class="radio" onclick="hidecontract()"/><label for="Other">Other</label>
-		'; 
+		';
 								 }
 							 else{
           echo'<input  id="Permanent" name="emptype" type="radio" value="Permanent" class="radio" onclick="hidecontract()"/><label for="Permanent">Permanent</label>
 		<input  id="Contract" name="emptype" type="radio" value="Contract" class="radio" onclick="showcontract()"/><label for="Contract">Contract</label>
 		<input  id="Temporary" name="emptype" type="radio" value="Temporary"  checked="checked" class="radio" onclick="hidecontract()"/><label for="Temporary">Temporary</label>
 	';}
-		echo'</div>
+		echo'	</div>
+		</div>
+		</div>
+		<br/><br/>
 			
 								<div id="contract" style="display:none">
-								<a class="labels">From:<span>*</span></a>
+									 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">From:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+								
 								<input type="text" id="from" name="from" class="in_field"  value="'.stripslashes($rowx['contractfrom']).'"/>
-								<div class="cleaner_h5"></div>
-								<a class="labels">To:<span>*</span></a>
-								<input type="text" id="to" name="to" class="in_field" value="'.stripslashes($rowx['contractto']).'"/>
 								</div>
+								</div>
+								<br/>
 								
-								<div class="cleaner_h5"></div>
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">To:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+								<input type="text" id="to" name="to" class="in_field" value="'.stripslashes($rowx['contractto']).'"/>
+									</div>
+								</div>
+								</div>
+								<br/>
 								
-									<a class="labels">Branch:<span>*</span></a>
-                                <div class="ui-widget" style="float:right; margin-right:8%">
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Branch:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+								
+								<div class="ui-widget" >
 	<select id="branch" class="combos"><option value="" selected="selected" disabled="disabled">Select One...</option>
 	<option value="'.stripslashes($rowx['branch']).'" selected="selected">'.stripslashes($rowx['branch']).'</option>							';
 		$resulta =mysql_query("select * from branchtbl order by name");
-							$num_resultsa = mysql_num_rows($resulta);	
-							for ($i=0; $i <$num_resultsa; $i++) {
-								$row=mysql_fetch_array($resulta);
-								$name=stripslashes($row['name']);
-								echo"<option value=\"".$name."\">".$name."</option>";
-						}
-		echo'</select></div>
-								<div class="cleaner_h5"></div>
-								
-								<a class="labels">Dept:<span>*</span></a>
-                                  <div class="ui-widget" style="float:right; margin-right:8%">
-	<select id="dept" class="combos"><option value="" selected="selected" disabled="disabled">Select One...</option>
-		<option value="'.stripslashes($rowx['dept']).'" selected="selected">'.stripslashes($rowx['dept']).'</option>';
-		$resulta =mysql_query("select * from dept order by name");
-							$num_resultsa = mysql_num_rows($resulta);	
-							for ($i=0; $i <$num_resultsa; $i++) {
-								$row=mysql_fetch_array($resulta);
-								$name=stripslashes($row['name']);
-								echo"<option value=\"".$name."\">".$name."</option>";
-						}
-		echo'</select></div>
-								<div class="cleaner_h5"></div>
-								<a class="labels">Position:<span>*</span></a>
-                               		<div class="ui-widget" style="float:right; margin-right:8%">
-	<select id="pos" class="combos">
-		<option value="'.stripslashes($rowx['position']).'" selected="selected">'.stripslashes($rowx['position']).'</option>';
-		$resulta =mysql_query("select * from positions order by name");
-							$num_resultsa = mysql_num_rows($resulta);	
+							$num_resultsa = mysql_num_rows($resulta);
 							for ($i=0; $i <$num_resultsa; $i++) {
 								$row=mysql_fetch_array($resulta);
 								$name=stripslashes($row['name']);
@@ -1217,6 +1316,48 @@ echo'</div>
 						}
 		echo'</select>
 </div>
+</div>
+</div><br/>
+										<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Dept:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+								
+                                <div class="ui-widget" >
+	<select id="dept" class="combos"><option value="" selected="selected" disabled="disabled">Select One...</option>
+		<option value="'.stripslashes($rowx['dept']).'" selected="selected">'.stripslashes($rowx['dept']).'</option>';
+		$resulta =mysql_query("select * from dept order by name");
+							$num_resultsa = mysql_num_rows($resulta);
+							for ($i=0; $i <$num_resultsa; $i++) {
+								$row=mysql_fetch_array($resulta);
+								$name=stripslashes($row['name']);
+								echo"<option value=\"".$name."\">".$name."</option>";
+						}
+		echo'</select></div>
+</div>
+
+</div>
+<br/>
+
+										<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Position:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+								
+                               		<div class="ui-widget">
+	<select id="pos" class="combos">
+		<option value="'.stripslashes($rowx['position']).'" selected="selected">'.stripslashes($rowx['position']).'</option>';
+		$resulta =mysql_query("select * from positions order by name");
+							$num_resultsa = mysql_num_rows($resulta);
+							for ($i=0; $i <$num_resultsa; $i++) {
+								$row=mysql_fetch_array($resulta);
+								$name=stripslashes($row['name']);
+								echo"<option value=\"".$name."\">".$name."</option>";
+						}
+		echo'</select>
+</div>
+</div>
+</div>
+<br/>
+<br/>
 								<div class="cleaner_h5"></div>
 								<div style="display:none">
 								<a class="labels">Clearance:</a>
@@ -1232,7 +1373,8 @@ echo'</div>
                         <div class="col-sm-8 controls">
 								
 								<textarea class="textarea" id="jobdesc">'.stripslashes($rowx['jobdesc']).'</textarea>
-								
+								<br/>
+								<br/>
 								</div>
 								</div>
 								<div class="cleaner"></div>
@@ -1247,12 +1389,17 @@ echo'</div>
 
 								<div class="col-sm-6 mar" id="personal">
 
+								<div class="panel widget">
+								
 								<div class="panel-heading vd_bg-grey">
-								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>MEDICAL DETAILS</h5>
+								<h5 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>MEDICAL DETAILS</h5>
 								</div>
 
 
-								<a class="labels">B.Group:</a>
+								<div class="panel-body">
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">B.Group:</label>
+                        <div class="col-sm-8 controls">
                                 <select class="select" id="bgroup" name="bgroup" style="float:right ;text-transform:uppercase">
 								 <option value="'.stripslashes($rowx['bgroup']).'" selected="selected">'.stripslashes($rowx['bgroup']).'</option>
 								<option value="A Rh+">A Rh+</option>
@@ -1264,61 +1411,93 @@ echo'</div>
 								<option value="O Rh+">O Rh+</option>
 								<option value="O Rh-">O Rh-</option>
 								</select>
-								<div class="cleaner_h5"></div>
-								<a class="labels">Known Health Problems/Alergies:</a>
-								<div class="cleaner_h5"></div>
+								</div>
+								</div>
+								
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Known Health Problems/Alergies:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+							
+								
 								<textarea class="textarea" id="alergy">'.stripslashes($rowx['alergy']).'</textarea>
-								<div class="cleaner_h5"></div>
+								
+					
+								</div>
+								</div>
 						
 
 								</div>
-
-								</form>
-                  </div>
-                </div>
-                <!-- Panel Widget --> 
-              </div>
-			  <!-- col-md-6 --> 
-
-			  <div class="col-md-6">
-                 <div class="panel widget">
+								</div>
+								</div>
+								</div>
+								</div>
 								
-
-
+								
 								<div class="col-sm-6 mar" id="personal">
+								<div class="panel widget">
 								
 								<div class="panel-heading vd_bg-grey">
-								<h5>EMERGENCY CONTACT DETAILS</h5>
-								</div>
-
-
-								<a class="labels">Name:</a>
+								
+								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>EMERGENCY CONTACT DETAILS</h5>
+									</div>
+								
+								<div class="panel-body">
+								
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Name:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
                                <input id="ename" name="ename" class="in_field" placeholder=""  value="'.stripslashes($rowx['ename']).'" type="text"  onkeyup="validatealp(\'ename\')">
-								<div class="cleaner_h5"></div>
-								<a class="labels">Phone:</a>
+									</div>
+						</div>
+						<br/><br/>
+							 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Phone:</a><span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
                                <input id="ephone" name="dob" class="in_field" placeholder="" type="text"  value="'.stripslashes($rowx['ephone']).'" onkeyup="validatenum(\'ephone\')">
-								<div class="cleaner_h5"></div>
-								<a class="labels">Postal Add:</a>
+								</div>
+								</div>
+								<br/><br/>
+									 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Postal Add:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+                        
                                <input id="epostal" name="dob" class="in_field" placeholder="" type="text"  value="'.stripslashes($rowx['epostal']).'" onkeyup="validatealp(\'fname\')">
-								<div class="cleaner"></div>
-
-								<div class="panel-heading vd_bg-grey">
-								<h5>EDUCATION DETAILS</h5>
+								</div>
 								</div>
 								
-								<a class="labels">Course:</a>
+								<div class="cleaner"></div>
+								</div>
+								</div>
+								</div>
+							
+
+								<div class="col-md-6">
+								<div class="panel widget">
+								
+								<div class="panel-heading vd_bg-grey">
+								
+								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>EDUCATION DETAILS</h5>
+								</div>
+								
+								<div class="panel-body">
+								 <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Course:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+
+								
 								<div class="ui-widget" style="float:right; margin-right:8%">
 	<select id="certificate"  class="combos">
 		<option value="">Select one...</option>';
 		$resulta =mysql_query("select * from courses  order by name");
-							$num_resultsa = mysql_num_rows($resulta);	
+							$num_resultsa = mysql_num_rows($resulta);
 							for ($i=0; $i <$num_resultsa; $i++) {
 								$row=mysql_fetch_array($resulta);
 								$name=stripslashes($row['name']);
 								$k=stripslashes($row['id']);
 								echo"<option value=\"".$k."θ".$name."\">".$name."</option>";
 						}
-		echo'</select></div><div class="cleaner_h5"></div>
+		echo'</select>
+</div><div class="cleaner_h5"></div>
 		
 		<div id="bachelors" style="width:100%;">';
 $parts=explode(';',stripslashes($rowx['education']));
@@ -1329,15 +1508,28 @@ $parts=explode(';',stripslashes($rowx['education']));
 		}
 		}
 echo'</div>
-	<div class="cleaner"></div>							
-							<h5>EXPERIENCE DETAILS</h5>		
-						<a class="labels">Experience:</a>
+	<div class="cleaner"></div>
+	</div>
+	</div>
+	</div>
+	</div>
+							
+							<div class="col-md-6">
+	<div class="panel-widget">
+	<div class="panel-heading vd_bg-grey">							
+							<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>EXPERIENCE DETAILS</h5>		
+						</div>
+<div class="panel-body">
+ <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Experience:<span style="color:#f00">*</span></label>
+                        <div class="col-sm-8 controls">
+					
                                		
 								<div class="ui-widget"  style="float:right; margin-right:8%">
 	<select id="experience" class="combos">
 		<option value="">Select one...</option>';
 		$resulta =mysql_query("select * from experience order by name");
-							$num_resultsa = mysql_num_rows($resulta);	
+							$num_resultsa = mysql_num_rows($resulta);
 							for ($i=0; $i <$num_resultsa; $i++) {
 								$row=mysql_fetch_array($resulta);
 								$name=stripslashes($row['name']);
@@ -1357,6 +1549,13 @@ echo'</div>
 		}
 		}
 echo'</div>
+	</div>
+</div>
+	</div>
+	</div>
+	
+	
+	
 		<div class="cleaner"></div>	
 		
 		<div class="panel-heading vd_bg-grey">
@@ -1368,7 +1567,7 @@ echo'</div>
 				<select id="bank" class="combos">
 		<option value="'.stripslashes($rowx['bid']).'#'.stripslashes($rowx['bname']).'" selected="selected">'.stripslashes($rowx['bname']).'</option>';
 		$resulta =mysql_query("select * from banktbl order by name");
-							$num_resultsa = mysql_num_rows($resulta);	
+							$num_resultsa = mysql_num_rows($resulta);
 							for ($i=0; $i <$num_resultsa; $i++) {
 								$row=mysql_fetch_array($resulta);
 								$name=stripslashes($row['name']);
@@ -1502,6 +1701,10 @@ echo'</div>
 								</div>
 								<!-- Panel Widget --> 
 							  </div>
+							  </div>
+							  </div>
+							  </div>
+							  </div>
 							  <!-- col-md-6 --> 
 								
 								<script>
@@ -1512,316 +1715,136 @@ echo'</div>
 								 
 								</script>
    							';
-							
-							break;	
-							case 6:
-							echo"<script>$('.emp2').parent().find('input:first').focus().width(250);</script>";
-$result = mysql_query("insert into log values('','".$username." accesses Employee Search Panel','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
 
-							echo'
-								<div style="width:100%; background:#272727; padding:3px 0 1px 0"  id="headclose">
-								<h3 style="color:#ffdd17; margin-top:3px">EMPLOYEE SEARCH PANEL
-								
-								<div id="saveclose" style="width:50px; height:30px;float:right;margin-right:10px;">
-								<input type="button" value="Exit" id="submit"  style="padding:5px 5px; border-color:#fff; background:#f00; float:right; cursor:pointer;width:50px" class="in_field" onclick="hidenewstude();"/></div>
-								</h3>
-								</div>
-							<div id="newstude" class="col-sm-12 ">
-							<div class="cleaner" style="border-bottom:2px solid #75c5cf"></div>
-								<div id="findstude">';							
-	
-echo'
-	<div id="op1">
-		<div class="ui_widget"  style="margin:0 10px 0 10px;float:left; width:270px">
-		<select id="emp21" class="emp2" style="width:260px; margin-left:10px;">
-		<option value="">Select one...</option>';
-		$result =mysql_query("select * from employee where status=1  and ".$_SESSION['clearance']." order by fname");
-							$num_results = mysql_num_rows($result);
-							for ($i=0; $i <$num_results; $i++) {
-								$row=mysql_fetch_array($result);
-								$empno=stripslashes($row['emp']);
-			echo'<option value="'.$empno.'">'.stripslashes($row['fname']).' '.stripslashes($row['mname']).' '.stripslashes($row['lname']).'</option>';
-							}
-		echo'</select>
-		</div>
-	</div>
-	<div id="op2" style="display:none">
-		<div class="ui_widget"  style="margin:0 10px 0 10px;float:left; width:270px">
-		<select id="emp22" class="emp2" style="width:260px; margin-left:10px;">
-		<option value="">Select one...</option>';
-		$result =mysql_query("select * from employee where status=1  and ".$_SESSION['clearance']." order by emp");
-							$num_results = mysql_num_rows($result);
-							for ($i=0; $i <$num_results; $i++) {
-								$row=mysql_fetch_array($result);
-								$empno=stripslashes($row['emp']);
-								echo'<option value="'.$empno.'">'.stripslashes($row['emp']).'</option>';
-							}
-		echo'
-			</select>
-		</div>
-	</div>
-	
-	<div id="op3" style="display:none">
-		<div class="ui_widget"  style="margin:0 10px 0 10px;float:left; width:270px">
-		<select id="emp23" class="emp2" style="width:260px; margin-left:10px;">
-		<option value="">Select one...</option>';
-		$result =mysql_query("select * from employee where status=1  and ".$_SESSION['clearance']." order by ename");
-							$num_results = mysql_num_rows($result);
-							for ($i=0; $i <$num_results; $i++) {
-								$row=mysql_fetch_array($result);
-								$empno=stripslashes($row['emp']);
-								echo'<option value="'.$empno.'">'.stripslashes($row['ename']).'</option>';
-							}
-		echo'
-			</select>
-		</div>
-	</div>
-	
-	<div id="op4" style="display:none">
-		<div class="ui_widget"  style="margin:0 10px 0 10px;float:left; width:270px">
-		<select id="emp24" class="emp2" style="width:260px; margin-left:10px;">
-		<option value="">Select one...</option>';
-		$result =mysql_query("select * from employee where status=1  and ".$_SESSION['clearance']." order by phone");
-							$num_results = mysql_num_rows($result);
-							for ($i=0; $i <$num_results; $i++) {
-								$row=mysql_fetch_array($result);
-								$empno=stripslashes($row['emp']);
-								echo'<option value="'.$empno.'">'.stripslashes($row['phone']).'</option>';
-							}
-		echo'
-			</select>
-		</div>
-	</div>
-	
-	
-	<div id="op5" style="display:none">
-		<div class="ui_widget"  style="margin:0 10px 0 10px;float:left; width:270px">
-		<select id="emp25" class="emp2" style="width:260px; margin-left:10px;">
-		<option value="">Select one...</option>
-								<option value="SINGLE">SINGLE</option>
-								<option value="ENGAGED">ENGAGED</option>
-								<option value="MARRIED">MARRIED</option>
-								<option value="DIVORCED">DIVORCED</option>
-								<option value="WIDOWED">WIDOWED</option>
-								</select> 
-		</div>
-	</div>
-	
-	<div id="op6" style="display:none">
-		<div class="ui_widget"  style="margin:0 10px 0 10px;float:left; width:270px">
-		<select id="emp26" class="emp2" style="width:260px; margin-left:10px;">
-		<option value="">Select one...</option>';
-		$result =mysql_query("select * from languages order by name");
-							$num_results = mysql_num_rows($result);
-							for ($i=0; $i <$num_results; $i++) {
-								$row=mysql_fetch_array($result);
-								$lan=strtoupper(stripslashes($row['name']));
-								echo'<option value="'.$lan.'">'.$lan.'</option>';
-							}
-		echo'
-			</select>
-		</div>
-	</div>
-
-	
-		<div id="op7" style="display:none">
-		<div class="ui_widget"  style="margin:0 10px 0 10px;float:left; width:270px">
-		<select id="emp27" class="emp2" style="width:260px; margin-left:10px;">
-		<option value="">Select one...</option>
-								<option value="MALE">MALE</option>
-								<option value="FEMALE">FEMALE</option>
-								</select> 
-		</div>
-	</div>
-	
-	<div id="op8" style="display:none">
-	   <input type="text" id="emp28" name="empfield" class="in_field"  style="float:left; width:27%"/> 
-	</div>
-	
-	<div id="op9" style="display:none">
-	   <input type="text" id="emp29" name="empfield" class="in_field"  style="float:left; width:27%"/> 
-	</div>
-	
-	<div id="op10" style="display:none">
-		<div class="ui_widget"  style="margin:0 10px 0 10px;float:left; width:270px">
-		<select id="emp210" class="emp2" style="width:260px; margin-left:10px;">
-		<option value="">Select one...</option>';
-		$result =mysql_query("select * from towns order by name");
-							$num_results = mysql_num_rows($result);
-							for ($i=0; $i <$num_results; $i++) {
-								$row=mysql_fetch_array($result);
-								$town=strtoupper(stripslashes($row['name']));
-								echo'<option value="'.$town.'">'.$town.'</option>';
-							}
-		echo'
-			</select>
-		</div>
-	</div>
-	
-	<div id="op11" style="display:none">
-		<div class="ui_widget"  style="margin:0 10px 0 10px;float:left; width:270px">
-		<select id="emp211" class="emp2" style="width:260px; margin-left:10px;">
-		<option value="">Select one...</option>
-								<option value="PERMANENT">PERMANENT</option>
-								<option value="CONTRACT">CONTRACT</option>
-								<option value="TEMPORARY">TEMPORARY</option>
-								</select> 
-		</div>
-	</div>
-	
-	<div id="op12" style="display:none">
-		<div class="ui_widget"  style="margin:0 10px 0 10px;float:left; width:270px">
-		<select id="emp212" class="emp2" style="width:260px; margin-left:10px;">
-		<option value="">Select one...</option>';
-		$result =mysql_query("select * from dept order by name");
-							$num_results = mysql_num_rows($result);
-							for ($i=0; $i <$num_results; $i++) {
-								$row=mysql_fetch_array($result);
-								$dept=strtoupper(stripslashes($row['name']));
-								echo'<option value="'.$dept.'">'.$dept.'</option>';
-							}
-		echo'
-			</select>
-		</div>
-	</div>
-	
-	<div id="op20" style="display:none">
-		<div class="ui_widget"  style="margin:0 10px 0 10px;float:left; width:270px">
-		<select id="emp220" class="emp2" style="width:260px; margin-left:10px;">
-		<option value="">Select one...</option>';
-		$result =mysql_query("select * from branchtbl order by name");
-							$num_results = mysql_num_rows($result);
-							for ($i=0; $i <$num_results; $i++) {
-								$row=mysql_fetch_array($result);
-								$name=strtoupper(stripslashes($row['name']));
-								echo'<option value="'.$name.'">'.$name.'</option>';
-							}
-		echo'
-			</select>
-		</div>
-	</div>
-	
-	<div id="op13" style="display:none">
-		<div class="ui_widget"  style="margin:0 10px 0 10px;float:left; width:270px">
-		<select id="emp213" class="emp2" style="width:260px; margin-left:10px;">
-		<option value="">Select one...</option>';
-		$result =mysql_query("select * from positions order by name");
-							$num_results = mysql_num_rows($result);
-							for ($i=0; $i <$num_results; $i++) {
-								$row=mysql_fetch_array($result);
-								$pos=strtoupper(stripslashes($row['name']));
-								echo'<option value="'.$pos.'">'.$pos.'</option>';
-							}
-		echo'
-			</select>
-		</div>
-	</div>
-	
-	<div id="op14" style="display:none">
-	   <input type="text" id="emp214" name="empfield" class="in_field"  style="float:left; width:27%"/> 
-	</div>
-	
-	<div id="op15" style="display:none">
-		<div class="ui_widget"  style="margin:0 10px 0 10px;float:left; width:270px">
-		<select id="emp215" class="emp2" style="width:260px; margin-left:10px;">
-		<option value="">Select one...</option>';
-		$result =mysql_query("select * from banktbl order by name");
-							$num_results = mysql_num_rows($result);
-							for ($i=0; $i <$num_results; $i++) {
-								$row=mysql_fetch_array($result);
-								$name=strtoupper(stripslashes($row['name']));
-								echo'<option value="'.$name.'">'.$name.'</option>';
-							}
-		echo'
-			</select>
-		</div>
-	</div>
-	
-	<div id="op16" style="display:none">
-		<div class="ui_widget"  style="margin:0 10px 0 10px;float:left; width:270px">
-		<select id="emp216" class="emp2" style="width:260px; margin-left:10px;">
-		<option value="">Select one...</option>';
-		$result =mysql_query("select * from courses order by name");
-							$num_results = mysql_num_rows($result);
-							for ($i=0; $i <$num_results; $i++) {
-								$row=mysql_fetch_array($result);
-								$name=strtoupper(stripslashes($row['name']));
-								echo'<option value="'.$name.'">'.$name.'</option>';
-							}
-		echo'
-			</select>
-		</div>
-	</div>
-	
-		<div id="op17" style="display:none">
-		<div class="ui_widget"  style="margin:0 10px 0 10px;float:left; width:270px">
-		<select id="emp217" class="emp2" style="width:260px; margin-left:10px;">
-		<option value="">Select one...</option>';
-		$result =mysql_query("select * from experience order by name");
-							$num_results = mysql_num_rows($result);
-							for ($i=0; $i <$num_results; $i++) {
-								$row=mysql_fetch_array($result);
-								$name=strtoupper(stripslashes($row['name']));
-								echo'<option value="'.$name.'">'.$name.'</option>';
-							}
-		echo'
-			</select>
-		</div>
-	</div>
-	
-	<div id="op18" style="display:none">
-	   <input type="text" id="emp218" name="empfield" class="in_field"  style="float:left; width:27%"/> 
-	</div>
-	
-	<div id="op19" style="display:none">
-	   <input type="text" id="emp219" name="empfield" class="in_field"  style="float:left; width:27%"/> 
-	</div>
-	
-		<select class="select" id="menusearch" style="float:right; margin-right:10px; width:20%">
-		<option value="1θemp" onclick="menuop(1)">Employee Name</option>
-		<option value="2θemp" onclick="menuop(2)">PF No</option>
-		<option value="3θemp" onclick="menuop(3)">Emergency Contact</option>
-		<option value="4θemp" onclick="menuop(4)">Phone No</option>
-		<option value="5θmarital" onclick="menuop(5)">Marital Status</option>
-		<option value="6θlanguages" onclick="menuop(6)">Languages</option>
-		<option value="7θgender" onclick="menuop(7)">Gender</option>
-		<option value="8θidno" onclick="menuop(8)">ID No</option>
-		<option value="9θpinno" onclick="menuop(9)">PIN No</option>
-		<option value="10θtown" onclick="menuop(10)">Location</option>
-		<option value="11θemptype" onclick="menuop(11)">Emp Type</option>
-		<option value="20θbranch" onclick="menuop(20)">Branch</option>
-		<option value="12θdept" onclick="menuop(12)">Dept</option>
-		<option value="13θposition" onclick="menuop(13)">Position</option>
-		<option value="14θjobdesc" onclick="menuop(14)">Job Desc</option>
-		<option value="15θbname" onclick="menuop(15)">Bank</option>
-		<option value="16θeducation" onclick="menuop(16)">Education</option>
-		<option value="17θexperience" onclick="menuop(17)">Experience</option>
-		<option value="18θskills" onclick="menuop(18)">Skills</option>
-		<option value="19θhobbies" onclick="menuop(19)">Hobbies</option>
-	</select>
-	<a class="labels" style="float:right;margin-right:10px; font-weight:bold">Search By:</a>';			
-	echo'<div id="results">';
-										
-										if(isset($_GET['param'])){
-										$param=$_GET['param'];}
-										else $param='default';
-										echo'
-										<div id="loading" ></div>
-                    					<div id="display" style="height:90%;"></div>
-                						<div class="cleaner_h5"></div>';
-                    					if($param=='default'){
-                    					echo "<script>paginate(1,'".$param."');</script>";
-										recent(1,2);
-										}
-										
-											else {
-											echo "<script>paginate(2,'".$param."');</script>";
-										recent(1,2);
-											}	
-									
 							break;
-							
-							case 7:
+
+
+    case 6:
+        $param=0;
+        if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+        else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+        $result = mysql_query("insert into log values('','".$username." accesses Find Members Search Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+        echo' <div class="vd_container" id="container">
+        <div class="vd_content clearfix">
+        <button class="btn vd_btn vd_bg-green" style="display:none" id="modaltrigger"  data-toggle="modal" data-target="#myModal"><a></a></button>
+
+            <div class="vd_content-section clearfix">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="panel widget">
+                  <div class="panel-heading vd_bg-grey">
+                    <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-dot-circle-o"></i> </span>Employee-Search Panel</h3>
+                  </div>
+                  <div class="panel-body table-responsive">
+                    <table class="table table-striped" id="data-tables">
+                      <thead>
+                        <tr>
+                          <th>PF N.o</th>
+                          <th>Name</th>
+                          <th>Department</th>
+                          <th>Position</th>
+                          <th>Contact</th>
+                          <th>ID N.o</th>
+                         
+                         </tr>
+                      </thead>
+                </table>
+                  </div>
+                </div>
+                <!-- Panel Widget --> 
+              </div>
+              <!-- col-md-12 --> 
+            </div>
+            <!-- row --> 
+            
+          </div>
+          <!-- .vd_content-section --> 
+          
+        </div>
+        <!-- .vd_content --> 
+      </div>
+      <!-- .vd_container --> 
+
+
+
+                  <!-- Modal -->
+                      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header vd_bg-green vd_white">
+                              <button type="button" id="dismissmodal" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+                              <h4 class="modal-title" id="myModalLabel">Function List</h4>
+                            </div>
+                            <div class="modal-body"> 
+                              <form class="form-horizontal" action="#" role="form">
+                            
+                                  
+
+                             
+                          </div>
+                          <!-- /.modal-content --> 
+                        </div>
+                        <!-- /.modal-dialog --> 
+                      </div>
+                      <!-- /.modal --> 
+
+
+
+                    </div>
+                  </div>
+                  <!-- Panel Widget --> 
+                </div>
+                <!-- col-md-12 --> 
+              </div>
+              <!-- row --> 
+              
+            </div>
+            <!-- .vd_content-section --> 
+            
+          </div>
+          <!-- .vd_content --> 
+        </div>
+        <!-- .vd_container --> 
+
+
+
+
+
+
+      <script type="text/javascript">
+      $(document).ready(function() {
+          "use strict";
+
+            var eventFired = function ( type ) {
+              console.log(type)
+             
+              setTimeout(function() {
+               $( "#data-tables tbody tr" ).off("click").on( "click", function( event ) {
+                $("#tenparam").val($(this).find("td").eq(1).html());
+                openoptmodal($(this).find("td").eq(1).html())
+               });
+              },500);   
+            }
+
+
+           $("#data-tables")
+              .on( "order.dt",  function () { eventFired( "Order" ); } )
+              .on( "search.dt", function () { eventFired( "Search" ); } )
+              .on( "draw.dt",   function () { eventFired( "Page" ); } )
+              .DataTable( {
+                  "processing": true,
+                  "serverSide": true,
+                  "ajax": "json.php?id=1"
+              });
+          
+
+      });
+      </script>
+      <style>td{cursor:pointer} </style>';
+        break;
+
+
+    case 7:
 							
 $result = mysql_query("insert into log values('','".$username." accesses Employee Chart Panel.Registration No:".$_GET['param']."','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
 $emp=$_GET['param'];
