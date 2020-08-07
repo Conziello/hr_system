@@ -60,7 +60,7 @@ function getstamp($rdate){
 										echo"
 												<script>
 												$().customAlert();
-												alert('Error!', '<p>Employee No/Biometric Id already exists in the database</p>');
+												swal('Error!', '<p>Employee No/Biometric Id already exists in the database</p>');
 												e.preventDefault();
 												</script>";
 										exit;
@@ -85,7 +85,7 @@ function getstamp($rdate){
 										echo"
 												<script>
 												$().customAlert();
-												alert('Error!', '<p>Employee No/Biometric Id already exists in the database</p>');
+												swal('Error!', '<p>Employee No/Biometric Id already exists in the database</p>');
 												e.preventDefault();
 												</script>";
 										exit;
@@ -106,9 +106,13 @@ $resulta = mysql_query("insert into log values('0','".$username." inserts data i
 				
 									echo'<img src="images/tick.png" style="margin-top:0px"  width="30" height="30"/>';
 									if($a==1){
-										echo'<script>setTimeout(function() {newemp();},500);</script>';
+										echo'
+										<script>swal("Success!"."Employe information saved successful!","success");</script>';
+										echo'
+										<script>setTimeout(function() {newemp();},500);</script>';
                                         }else{
 
+											echo'<script>swal("Error","Employee information saved","error")';
                                         	echo'<script>setTimeout(function() {seeemp(5);},500);</script>';
 
                                         }

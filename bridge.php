@@ -149,235 +149,170 @@ $('input').live('keypress',function
 $id=$_GET['id'];
 switch($id){
 	
-case 1:	
-							$_SESSION['lan']=$_SESSION['skl']=$_SESSION['hobby']=$_SESSION['exp']=$_SESSION['edu']=array();
-							$result =mysql_query("select * from employee order by serial desc limit 0,1");
-							$row=mysql_fetch_array($result);
-							if(mysql_num_rows($result)==0){
-							$emp=1;
-							}else {
-							$len=strlen(stripslashes($row['emp']))-1;
-							$emp=substr(stripslashes($row['emp']),1,$len);
-							$emp+=1;
-							}
-
-							$emp=sprintf("%05d",$emp);
-							$emp='K'.$emp;
 
 
+	case 1:
+          
+		$_SESSION['lan']=$_SESSION['skl']=$_SESSION['hobby']=$_SESSION['exp']=$_SESSION['edu']=array();
+		$result =mysql_query("select * from employee order by serial desc limit 0,1");
+		$row=mysql_fetch_array($result);
+		if(mysql_num_rows($result)==0){
+		$emp=1;
+		}else {
+		$len=strlen(stripslashes($row['emp']))-1;
+		$emp=substr(stripslashes($row['emp']),1,$len);
+		$emp+=1;
+		}
 
-			$result = mysql_query("insert into log values('','".$username." accesses New Employee Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+		$emp=sprintf("%05d",$emp);
+		$emp='K'.$emp;
+
+$param=0;$_SESSION['housediv']=array();
+if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+$result = mysql_query("insert into log values('','".$username." accesses New Employee File Panel','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+
+$prescid=date('YmdHi').RAND(10,99);
+
+
+echo '<div class="vd_container" id="container">
+<div class="vd_content clearfix" style="">
+<h3 style="color:#676e69; margin-top:3px; margin-left:2px">NEW EMPLOYEE INFORMATION
 			
-			echo"<script>$('.combos').parent().find('input:first').width(180);	</script>";	
-								echo'<script>
-								$(window).bind("keydown",
-								function(evt){
-									
-									if(evt.ctrlKey&&(evt.which==83)){
-									addnewemp(1);
-									evt.preventDefault();
-									return false;	
-									}
-									});
-									
-									
-							  
-							   </script>';
-								
-								
-							
-								echo'
-								<div class="vd_container">
-								<div class="vd_content clearfix">
-
-								<div class="vd_content-section clearfix">
-								<div class="row" id="form-basic">
-								  <div class="col-md-12">
-									<div class="panel widget">
-								
 			
-								
-								<div class="panel-heading ">
-									
-									<h3 class ="panel-title" style="color:#0a0a0a; margin-top:3px"> <span class="menu-icon"> <i class="fa fa-th-list"></i></span>NEW EMPLOYEE INFORMATION
-								
-								<div id="saveclose" style="width:50px; height:30px;float:right;margin-right:10px;">
-								<input type="button" value="Exit" id="submit"  style="padding:5px 5px; border-color:#fff; background:#f00; float:right; cursor:pointer;width:50px" class="in_field" onclick="hidenewstude();"/>
-								</div>
-								
-								
-								
-								<div style="width:50px; height:30px;float:right;margin-right:10px;">
-								<input type="button" value="Save" id="submit"  style="padding:5px 5px; border-color:#fff; background:#75c5cf; float:right; cursor:pointer;width:50px" class="in_field" onclick="addnewemp(1);"/>
-								</div>
-								<div id="newemployee" style="width:50px; height:30px;float:right;margin-right:10px;"></div>
-								</h3>
-							</div>
-							
-						
-								</div>
-								
-							
-							
-								<div class="col-sm-6 mar" id="personal">
-								<div class="panel widget">
+			</h3>
+	<div class="vd_content-section clearfix">
+<div class="row" id="form-basic">
+  <div class="col-md-6">
+	<div class="panel widget">
+	  <div class="panel-heading vd_bg-grey">
+	  
+		<h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Employee Personal Details</h3>
+	  </div>
+	  <div class="panel-body">
+		<form class="form-horizontal" action="#" role="form">
+		  <div class="form-group">
+			<label style="float:left" class="col-sm-4">PF No:<span style="color:#f00">*</span></label>
+			<div class="col-sm-8 controls">
+			  <input type="text" id="emp" value="'.$emp.'">
+			</div>
+		  </div>
 
-								<div class="panel-heading vd_bg-grey">
-								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>PERSONAL DETAILS</h5>
-								</div>
-								<div class="panel-body">
 
-								<form class="form-horizontal" role="form">
-								           <div class="form-group">
-                        <label style="float:left" class="col-sm-4">PF No:</label>
-                        <div class="col-sm-8 controls">
-								
-                                <input type="text" id="emp" name="emp" class="in_field" value="'.$emp.'" style="border-color:#f00"/> 
-								
-								</div>
-                        </div>
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Biometric Id</label>
-                        <div class="col-sm-8 controls">
-								
-                                <input type="text" id="biomid" name="biomid" class="in_field" value="" style=""/> 
-                                </div>
-                        </div>
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">F.Name:</label>
-                        <div class="col-sm-8 controls">
-								
-                                <input type="text" id="fname" name="field" class="in_field" onkeyup="validatealp(\'fname\')"/>
-								</div>
-								</div>
-								
-								<div class="form-group">
-                        <label style="float:left" class="col-sm-4">M. Name:</label>
-                        <div class="col-sm-8 controls">
-								 
-                                <input type="text" id="mname" name="field" class="in_field"/>
-                                </div>
-                                </div>
-                                 
-								<div class="form-group">
-                        <label style="float:left" class="col-sm-4">L. Name:</label>
-                        <div class="col-sm-8 controls">
-								 
-                                <input type="text" id="lname" name="field" class="in_field"/>
-                                </div>
-                                </div>
-                                 
-									<div class="form-group">
-                        <label style="float:left" class="col-sm-4">D.O.B:</label>
-                        <div class="col-sm-8 controls">
-								 
-							  <input id="dob" name="dob" class="in_field" placeholder="" type="text" readonly="readonly">
-							  </div>
-							  </div>
-							  
-							   <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Mar. Status:</label>
-                        <div class="col-sm-8 controls">
-								 
-                                <select class="select" id="mar" name="mar" style="float:right; text-transform:uppercase">
-								<option value="Single">Single</option>
-								<option value="Engaged">Engaged</option>
-								<option value="Married">Married</option>
-								<option value="Divorced">Divorced</option>
-								<option value="Widowed">Widowed</option>
-								</select> 
-								
-								</div>
-								</div>
-								<br/>
-								
-								<div class="form-group">
-                        <label style="float:left" class="col-sm-4">Languages:</label>
-                        <div class="col-sm-8 controls">
-								 
-                               		
-								<div class="ui-widget"  style="float:right; margin-right:8%">
-	<select id="language" class="combos">
-		<option value="">Select one...</option>';
-		$resulta =mysql_query("select * from languages order by name");
-							$num_resultsa = mysql_num_rows($resulta);	
-							for ($i=0; $i <$num_resultsa; $i++) {
-								$row=mysql_fetch_array($resulta);
-								$name=stripslashes($row['name']);
-							$k=stripslashes($row['id']);
-								echo"<option value=\"".$k."θ".$name."\">".$name."</option>";
-						}
-		echo'</select>
-<div id="languages" style="width:100%;"></div>
-</div>
+		   <div class="form-group">
+			<label style="float:left" class="col-sm-4">Biometric Id:<span style="color:#f00">*</span></label>
+			<div class="col-sm-8 controls">
+			  <input type="text" id="idno" value="" name="biomid">
+			</div>
+		  </div>
 
-</div>
+		   <div class="form-group">
+			<label style="float:left" class="col-sm-4">First Name<span style="color:#f00">*</span></label>
+			<div class="col-sm-8 controls">
+			  <input type="text" id="fname" name="fname" value="">
+			</div>
+		  </div>
+		  <div class="form-group">
+		  <label style="float:left" class="col-sm-4">Middle Name<span style="color:#f00">*</span></label>
+		  <div class="col-sm-8 controls">
+			<input type="text" id="mname" name ="mname" value="">
+		  </div>
+		</div>
+
+		   <div class="form-group">
+			<label style="float:left" class="col-sm-4">Last Name<span style="color:#f00">*</span></label>
+			<div class="col-sm-8 controls">
+			  <input type="text" id="lname" name="lname" value="">
+			</div>
+		  </div>
+
+		   <div class="form-group">
+			<label style="float:left" class="col-sm-4">DOB:<span style="color:#f00">*</span></label>
+			<div class="col-sm-8 controls">
+			  <input type="date" id="id" name="dob"  value="">
+			</div>
+		  </div>
+
+		   <div class="form-group">
+			<label style="float:left" class="col-sm-4">Marital status:<span style="color:#f00">*</span></label>
+			<div class="col-sm-8 controls">
+			<select class="select" id="mar" name="mar" style="float:right; text-transform:uppercase">
+			<option value="Single">Single</option>
+			<option value="Engaged">Engaged</option>
+			<option value="Married">Married</option>
+			<option value="Divorced">Divorced</option>
+			<option value="Widowed">Widowed</option>
+			</select> 
+			</div>
+		  </div>
+
+
+		  <div class="form-group">
+			<label style="float:left" class="col-sm-4">Languages:<span style="color:#f00">*</span></label>
+			<div class="col-sm-8 controls">
+			<select id="language" class="combos">
+			<option value="">Select one...</option>';
+			$resulta =mysql_query("select * from languages order by name");
+					  $num_resultsa = mysql_num_rows($resulta);	
+					  for ($i=0; $i <$num_resultsa; $i++) {
+						$row=mysql_fetch_array($resulta);
+						$name=stripslashes($row['name']);
+					  $k=stripslashes($row['id']);
+						echo"<option value=\"".$k."θ".$name."\">".$name."</option>";
+					}
+			echo'</select>
+			</div>
+		  </div>
 
 
 
+		   <div class="form-group">
+			<label style="float:left" class="col-sm-4">Gender:</label>
+			<div class="col-sm-8 controls">
+			  Male:<input id="maleGender" type="radio" checked="checked"  id="pin" value="male">
+			  Female:<input id="femaleGender" type="radio" checked="checked"  id="pin" value="female">
+			</div>
+		  </div>
 
-								         <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Gender:</label>
-                        <div class="col-sm-8 controls">
-								 
-								
-								<div id="radio">
-		<input  id="maleGender" name="gender" type="radio" checked="checked" value="male" class="radio"/><label for="maleGender">Male</label>
-		<input  id="femaleGender" name="gender" type="radio" value="female" class="radio"/><label for="femaleGender">Female</label>
-		
-								</div>
-								</div>
-								</div>
-								<br/>
-								     <div class="form-group">
-                        <label style="float:left" class="col-sm-4">ID NO:</label>
-                        <div class="col-sm-8 controls">
-			
-                                <input type="text" id="idno" name="field" class="in_field" onkeyup="validatenum(\'idno\')"/>
-								</div>
-								</div>
-								
-								<div class="form-group">
-                        <label style="float:left" class="col-sm-4">Phone No:</label>
-                        <div class="col-sm-8 controls">
-								
-						
-								 <input type="text" id="phone" name="phone" class="in_field" onkeyup="validatenum(\'phone\')"/> 
-								</div>
-								</div>
-								
-								<div class="form-group">
-                        <label style="float:left" class="col-sm-4">Phone No[2]:</label>
-                        <div class="col-sm-8 controls">
-								<div id="music"></div>
-								
-								 <input type="text" id="phone2" name="phone2" class="in_field" onkeyup="validatenum(\'phone2\')"/> 
-								</div>
-								</div>
-								
-								<div class="form-group">
-                        <label style="float:left" class="col-sm-4">Email Add:</label>
-                        <div class="col-sm-8 controls">
-								
-								 <input type="text" id="emailadd" name="emailadd" class="in_field" style="text-transform:lowercase"/> 
-								 </div>
-								 </div>
-								<div class="form-group">
-                        <label style="float:left" class="col-sm-4">Phy Add:</label>
-                        <div class="col-sm-8 controls">
-                        								
-                                <input type="text" id="phyadd" name="phyadd" class="in_field"/> 
-                                </div>
-                                </div>
-                                <br/>
-                                
-									<div class="form-group">
-                        <label style="float:left" class="col-sm-4">Location:</label>
-                        <div class="col-sm-8 controls">
-								
-                               		
-								<div class="ui-widget" style="float:right; margin-right:8%">
-	<select id="town" class="combos">
+		   <div class="form-group">
+			<label style="float:left" class="col-sm-4">ID No:<span style="color:#f00">*</span></label>
+			<div class="col-sm-8 controls">
+			<input type="text" id="idno" name ="idno" onkeyup = "validatenum(\'idno\')" value="">
+		  </div>
+			</div>
+
+			<div class="form-group">
+			<label style="float:left" class="col-sm-4">Phone No:<span style="color:#f00">*</span></label>
+			<div class="col-sm-8 controls">
+			<input type="text" id="phone" name ="phone" onkeyup = "validatenum(\'phone\')" value="">
+		  </div>
+		  </div>
+
+		  <div class="form-group">
+		  <label style="float:left" class="col-sm-4">Phone No[2]:<span style="color:#f00">*</span></label>
+		  <div class="col-sm-8 controls">
+		  <input type="text" id="phone2" name ="phone2" onkeyup = "validatenum(\'phone2\')" value="">
+		</div>
+		</div>
+
+		<div class="form-group">
+		<label style="float:left" class="col-sm-4">Email Address:<span style="color:#f00">*</span></label>
+		<div class="col-sm-8 controls">
+		<input type="text" id="emailadd" name ="emailadd" onkeyup = "validatenum(\'idno\')" value="">
+	  </div>
+		</div>
+
+		<div class="form-group">
+		<label style="float:left" class="col-sm-4">Physical address:<span style="color:#f00">*</span></label>
+		<div class="col-sm-8 controls">
+		<input type="text" id="phyadd" name ="phyadd"  value="">
+	  </div>
+		</div>
+
+		<div class="form-group">
+		<label style="float:left" class="col-sm-4">Location:<span style="color:#f00">*</span></label>
+		<div class="col-sm-8 controls">
+		<select id="town" class="combos">
 		<option value="">Select one...</option>';
 		$resulta =mysql_query("select * from towns order by name");
 							$num_resultsa = mysql_num_rows($resulta);	
@@ -387,556 +322,494 @@ case 1:
 								echo"<option value=\"".$name."\">".$name."</option>";
 						}
 		echo'</select>
-</div>
-</div>
-</div>
-<div class="cleaner_h5"></div>
-						
-								
-								</div>
-								</div>
-								</div>
-								
-								</form>
-								</div>
-							
-							
-								<div class="col-sm-6 mar" id="personal">
-								<div class="panel widget">
-								<div class="panel-heading vd_bg-grey">
-								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>EMPLOYMENT DETAILS</h5>
-								</div>
-								
-								<div class="panel body">
-								<div class="form-group">
-                        <label style="float:left" class="col-sm-4">Basic Sal:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-								
-								<input type="text" id="sal" name="sal" class="in_field" onkeyup="validatenum(\'sal\')"/>
-								
-								</div>
-								</div>
-								<br/>
-								<div class="form-group">
-                        <label style="float:left" class="col-sm-4">Emp Category:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-								
-                                <select class="select" id="empcateg" name="empcateg" style="float:right; text-transform:uppercase">
-								<option value="Normal">Normal</option>
-								<option value="NIL_PAYE">NIL PAYE</option>
-								<option value="NIL_NSSF">NIL NSSF</option>
-								</select> 
-								</div>
-								</div>
-								<br/>
-								<div class="form-group">
-                        <label style="float:left" class="col-sm-4">D.O.E:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-								
-
-								<input id="datepicker2" name="doe" class="in_field"  type="text" readonly="readonly">
-								</div>
-								</div>
-								<br/>
-								<br/>
-							 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Emp Type:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-								
-								
-								<div id="radio2">
-		<input  id="Permanent" name="emptype" type="radio" checked="checked" value="Permanent" class="radio" onclick="hidecontract()"/><label for="Permanent">Permanent</label>
-		<input  id="Contract" name="emptype" type="radio" value="Contract" class="radio" onclick="showcontract()"/><label for="Contract">Contract</label>
-		<input  id="Temporary" name="emptype" type="radio" value="Temporary" class="radio" onclick="hidecontract()"/><label for="Temporary">Temporary</label>
+	  </div>
 		</div>
+	 
+
+
+
+		
+	</form>
+	  </div>
+	</div>
+	<!-- Panel Widget --> 
+ 
+
+ 
+  <div class="panel widget">
+	<div class="panel-heading vd_bg-grey">
+	
+	  <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Employment  Details</h3>
+	</div>
+	<div class="panel-body">
+	  <form class="form-horizontal" action="#" role="form">
+		<div class="form-group">
+		  <label style="float:left" class="col-sm-4">Basic Salary:<span style="color:#f00">*</span></label>
+
+		  <div class="col-sm-8 controls">
+			<input type="text" id="sal" name="sal" value="">
+		  </div>
 		</div>
+
+		<div class="form-group">
+		  <label style="float:left" class="col-sm-4">Employee categories:<span style="color:#f00">*</span></label>
+		  
+		  <div class="col-sm-8 controls">
+		  <select class="select" id="empcateg" name="empcateg" style="float:right; text-transform:uppercase">
+		  <option value="Normal">Normal</option>
+		  <option value="NIL_PAYE">NIL PAYE</option>
+		  <option value="NIL_NSSF">NIL NSSF</option>
+		  </select> 
+		  </div>
 		</div>
-		<br/><br/>
-			
-								<div id="contract" style="display:none">
-									 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">From:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-								
-								<input type="text" id="from" name="from" class="in_field"/>
-								</div>
-								</div>
-								<br/>
-								
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">To:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-								
-								<input type="text" id="to" name="to" class="in_field"/>
-								</div>
-								</div>
-								</div>
-								<br/>
-								
-								<div class="form-group">
-                        <label style="float:left" class="col-sm-4">Branch:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-								
-								
-	<select id="branch" class="combos">
-	<option value="" selected="selected" disabled="disabled">Select One...</option>
-								';
-		$resulta =mysql_query("select * from branchtbl order by name");
-							$num_resultsa = mysql_num_rows($resulta);	
-							for ($i=0; $i <$num_resultsa; $i++) {
-								$row=mysql_fetch_array($resulta);
-								$name=stripslashes($row['name']);
-								echo"<option value=\"".$name."\">".$name."</option>";
-						}
-		echo'</select>
-		<br/>
 
-</div>
-</div><br/>
-										<div class="form-group">
-                        <label style="float:left" class="col-sm-4">Dept:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-								
-                                <div class="ui-widget">
-	<select id="dept" class="combos"><option value="" selected="selected" disabled="disabled">Select One...</option>
-								';
-		$resulta =mysql_query("select * from dept order by name");
-							$num_resultsa = mysql_num_rows($resulta);	
-							for ($i=0; $i <$num_resultsa; $i++) {
-								$row=mysql_fetch_array($resulta);
-								$name=stripslashes($row['name']);
-								echo"<option value=\"".$name."\">".$name."</option>";
-						}
-		echo'</select><br/>
-</div>
-</div>
 
-</div>
-<br/>
+		 <div class="form-group">
+		  <label style="float:left" class="col-sm-4">D.O.E:<span style="color:#f00">*</span></label>
+		  <div class="col-sm-8 controls">
+			<input class="date" type="date" id="datepicker2" value="" name="doe">
+		  </div>
+		</div>
 
-										<div class="form-group">
-                        <label style="float:left" class="col-sm-4">Position:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-								
-                               		<div class="ui-widget">
-	<select id="pos" class="combos">
-		<option value="">Select one...</option>';
-		$resulta =mysql_query("select * from positions order by name");
-							$num_resultsa = mysql_num_rows($resulta);	
-							for ($i=0; $i <$num_resultsa; $i++) {
-								$row=mysql_fetch_array($resulta);
-								$name=stripslashes($row['name']);
-								echo"<option value=\"".$name."\">".$name."</option>";
-						}
-		echo'</select>
-		<br/>
-</div>
-</div>
-</div>
-<br/>
-<br/>
-<br/>
-								<div class="cleaner_h5"></div>
-								<div style="display:none">
-								<div class="form-group">
-								<label style="float:left" class="col-sm-4">Clearance:<span style="color:#f00">*</span></label>
-								<div class="col-sm-8 controls">
-                                <select class="select" id="clearance" name="clearance" style="float:right ;text-transform:uppercase">
-								<option value="1">Level 1</option>
-								<option value="2">Level 2</option>
-								</select>
-								</div>
-								</div>
-								<div class="cleaner_h5"></div>
-								</div>
-								
-								<div class="form-group">
-								<label style="float:left" class="col-sm-4">Job Description:<span style="color:#f00">*</span></label>
-								<div class="col-sm-8 controls">
-								<textarea class="textarea" id="jobdesc"></textarea>
-					</div>
-						</div>
-						</div>
-						</div>
-								</div>
-								<br/>
-								<br/>
-								
-								
-								
-								
-								
+		 <div class="form-group">
+		  <label style="float:left" class="col-sm-4">Employee Type:<span style="color:#f00">*</span></label>
+		  <div class="col-sm-8 controls">
+		  <input  id="Permanent" name="emptype" type="radio" checked="checked" value="Permanent" class="radio" onclick="hidecontract()"/><label for="Permanent">Permanent</label>
+		  <input  id="Contract" name="emptype" type="radio" value="Contract" class="radio" onclick="showcontract()"/><label for="Contract">Contract</label>
+		  <input  id="Temporary" name="emptype" type="radio" value="Temporary" class="radio" onclick="hidecontract()"/><label for="Temporary">Temporary</label> 
+		  </div>
+		</div>
+		<div class="form-group">
+		<label style="float:left" class="col-sm-4">From:<span style="color:#f00">*</span></label>
+		<div class="col-sm-8 controls">
+		<input type="date" id="from" name="from" class="date"/>
+		</div>
+	  </div>
 
-								<div class="cleaner_h5"></div>
-								<div class="col-md-6">
-								<div class="panel widget">
-								<div class="panel-heading vd_bg-grey">
-								<h5 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>MEDICAL DETAILS</h5>
-								</div>
-								<div class="panel-body">
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">B.Group:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-								
-                                <select class="select" id="bgroup" name="bgroup" style="float:right ;text-transform:uppercase">
-								 <option value="" selected="selected" disabled="disabled">Select One...</option>
-								<option value="A Rh+">A Rh+</option>
-								<option value="A Rh-">A Rh-</option>
-								<option value="B Rh+">B Rh+</option>
-								<option value="B Rh-">B Rh-</option>
-								<option value="AB Rh+">AB Rh+</option>
-								<option value="AB Rh-">AB Rh-</option>
-								<option value="O Rh+">O Rh+</option>
-								<option value="O Rh-">O Rh-</option>
-								</select>
-								</div>
-								</div>
-								<br/>
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Known Health Problems/Alergies:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-							
-								<div class="cleaner_h5"></div>
-								<textarea class="textarea" id="alergy"></textarea>
-								<div class="cleaner_h5"></div>
-								
-								</div>
-								</div>
-						
+	  <div class="form-group">
+		<label style="float:left" class="col-sm-4">To:<span style="color:#f00">*</span></label>
+		<div class="col-sm-8 controls">
+		<input type="date" id="to" name="to" class="date"/>
+		</div>
+	  </div>
 
-								</div>
-								</div>
-								</div>
-								
-								
-								<div class="col-sm-6 mar" id="personal">
-								<div class="panel widget">
-								
-								<div class="panel-heading vd_bg-grey">
-								
-								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>EMERGENCY CONTACT DETAILS</h5>
-								</div>
-								
-								<div class="panel-body">
-								
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Name:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
+	  <div class="form-group">
+		<label style="float:left" class="col-sm-4">Branch:<span style="color:#f00">*</span></label>
+		<div class="col-sm-8 controls">
+		<select id="branch" class="combos"><option value="" selected="selected" disabled="disabled">Select One...</option>
+		';
+$resulta =mysql_query("select * from branchtbl order by name");
+	  $num_resultsa = mysql_num_rows($resulta);	
+	  for ($i=0; $i <$num_resultsa; $i++) {
+		$row=mysql_fetch_array($resulta);
+		$name=stripslashes($row['name']);
+		echo"<option value=\"".$name."\">".$name."</option>";
+	}
+echo'</select>
+		</div>
+	  </div>
 
-								
-								 <input id="ename" name="ename" class="in_field" placeholder="" type="text"  onkeyup="validatealp(\'ename\')">
-						</div>
-						</div>
-						<br/><br/>
-							 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Phone:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-								
-                               <input id="ephone" name="dob" class="in_field" placeholder="" type="text"  onkeyup="validatenum(\'ephone\')">
-								</div>
-								</div>
-								<br/><br/>
-									 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Postal Add:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-                        
-								
-                               <input id="epostal" name="dob" class="in_field" placeholder="" type="text"  onkeyup="validatealp(\'fname\')">
-								</div>
-								</div>
-								
-								<div class="cleaner"></div>
-								</div>
-								</div>
-								</div>
-							
+		 <div class="form-group">
+		  <label style="float:left" class="col-sm-4">Dept:<span style="color:#f00">*</span></label>
+		  <div class="col-sm-8 controls">
+		  <select id="dept" class="combos"><option value="" selected="selected" disabled="disabled">Select One...</option>
+			';
+$resulta =mysql_query("select * from dept order by name");
+		$num_resultsa = mysql_num_rows($resulta);	
+		for ($i=0; $i <$num_resultsa; $i++) {
+			$row=mysql_fetch_array($resulta);
+			$name=stripslashes($row['name']);
+			echo"<option value=\"".$name."\">".$name."</option>";
+	}
+echo'</select>
+		  </div>
+		</div>
 
-								<div class="col-md-6">
-								<div class="panel widget">
-								
-								<div class="panel-heading vd_bg-grey">
-								
-								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>EDUCATION DETAILS</h5>
-								</div>
-								
-								<div class="panel-body">
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Course:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
+		 <div class="form-group">
+		  <label style="float:left" class="col-sm-4">Position:<span style="color:#f00">*</span></label>
+		  <div class="col-sm-8 controls">
+		  <select id="pos" class="combos">
+		  <option value="">Select one...</option>';
+		  $resulta =mysql_query("select * from positions order by name");
+					$num_resultsa = mysql_num_rows($resulta);	
+					for ($i=0; $i <$num_resultsa; $i++) {
+					  $row=mysql_fetch_array($resulta);
+					  $name=stripslashes($row['name']);
+					  echo"<option value=\"".$name."\">".$name."</option>";
+				  }
+		  echo'</select>
+		  </div>
+		</div>
 
-								
-								<div class="ui-widget" style="float:right; margin-right:8%">
-	<select id="certificate"  class="combos">
-		<option value="">Select one...</option>';
-		$resulta =mysql_query("select * from courses order by name");
-							$num_resultsa = mysql_num_rows($resulta);	
-							for ($i=0; $i <$num_resultsa; $i++) {
-								$row=mysql_fetch_array($resulta);
-								$name=stripslashes($row['name']);
-								$k=stripslashes($row['id']);
-								echo"<option value=\"".$k."θ".$name."\">".$name."</option>";
-						}
-		echo'</select></div>
+		 <div class="form-group">
+		  <label style="float:left" class="col-sm-4">Clearance:<span style="color:#f00">*</span></label>
+		  <div class="col-sm-8 controls">
+		  <select class="select" id="clearance" name="clearance" style="float:right ;text-transform:uppercase">
+			<option value="1">Level 1</option>
+			<option value="2">Level 2</option>
+			</select>
+		  </div>
+		</div>
+
+
+		<div class="form-group">
+		  <label style="float:left" class="col-sm-4">Job Description:<span style="color:#f00">*</span></label>
+		  <div class="col-sm-8 controls">
+		  <textarea class="textarea" id="jobdesc"></textarea>
+		  </div>
+		</div>
+
+
+
+				
+
+
+
+
+
+	  
+  </form>
+	</div>
+  </div>
+  <!-- Panel Widget --> 
 </div>
-</div>
-		<div class="cleaner_h5"></div>
+<!-- col-md-6 --> 
+
+
+<div class="col-md-6">
+<div class="panel widget">
+  <div class="panel-heading vd_bg-grey">
+  
+	<h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Emergency Contact Details</h3>
+  </div>
+  <div class="panel-body">
+	<form class="form-horizontal" action="#" role="form">
+	  <div class="form-group">
+		<label style="float:left" class="col-sm-4">Name:<span style="color:#f00">*</span></label>
+		<div class="col-sm-8 controls">
+		<input id="ename" name="ename" class="in_field" placeholder="" type="text"  onkeyup="validatealp(\'ename\')">
+		</div>
+	  </div>
+
+
+	   <div class="form-group">
+		<label style="float:left" class="col-sm-4">Phone:<span style="color:#f00">*</span></label>
+		<div class="col-sm-8 controls">
+		<input id="ephone" name="dob" class="in_field" placeholder="" type="text"  onkeyup="validatenum(\'ephone\')">
+		</div>
+	  </div>
+
+	   <div class="form-group">
+		<label style="float:left" class="col-sm-4">Postal Address:<span style="color:#f00">*</span></label>
+		<div class="col-sm-8 controls">
+		<input id="epostal" name="dob" class="in_field" placeholder="" type="text"  onkeyup="validatealp(\'fname\')">
+		</div>
+	  </div>
+	 
+
 
 	
+</form>
+  </div>
+</div>
+<!-- Panel Widget --> 
+
+
+
+<div class="panel widget">
+<div class="panel-heading vd_bg-grey">
+
+  <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Medical  Details</h3>
+</div>
+<div class="panel-body">
+<div class="form-group">
+<label style="float:left" class="col-sm-4">B.Group:</label>
+<div class="col-sm-8 controls">
+		<select class="select" id="bgroup" name="bgroup" style="float:right ;text-transform:uppercase">
+		 <option value="" selected="selected">'.stripslashes($rowx['bgroup']).'</option>
+		<option value="A Rh+">A Rh+</option>
+		<option value="A Rh-">A Rh-</option>
+		<option value="B Rh+">B Rh+</option>
+		<option value="B Rh-">B Rh-</option>
+		<option value="AB Rh+">AB Rh+</option>
+		<option value="AB Rh-">AB Rh-</option>
+		<option value="O Rh+">O Rh+</option>
+		<option value="O Rh-">O Rh-</option>
+		</select>
+		</div>
+		</div>
+		
+		 <div class="form-group">
+<label style="float:left" class="col-sm-4">Known Health Problems/Alergies:<span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls">
 	
 		
-		<div id="bachelors" style="width:100%;"></div>
-	<div class="cleaner"></div>
-	</div>
-	</div>
-	</div>
+		<textarea class="textarea" id="alergy"></textarea>
+		
 
-
-
-	<div class="col-md-6">
-	<div class="panel-widget">
-	<div class="panel-heading vd_bg-grey">							
-							<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>EXPERIENCE DETAILS</h5>	
-							</div>
-<div class="panel-body">
- <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Experience:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">				
-                               		
-								<div class="ui-widget"  style="float:right; margin-right:8%">
-	<select id="experience" class="combos">
-		<option value="">Select one...</option>';
-		$resulta =mysql_query("select * from experience order by name");
-							$num_resultsa = mysql_num_rows($resulta);	
-							for ($i=0; $i <$num_resultsa; $i++) {
-								$row=mysql_fetch_array($resulta);
-								$k=stripslashes($row['id']);
-								$name=stripslashes($row['name']);
-								echo"<option value=\"".$k."θ".$name."\">".$name."</option>";
-						}
-							echo'</select>
-</div>							
-	<div id="experiences" style="width:100%;"></div>
-	</div>
+		</div>
+		</div>
 </div>
+</div>
+<!-- Panel Widget --> 
+
+
+<div class="panel widget">
+<div class="panel-heading vd_bg-grey">
+
+  <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Education  Details</h3>
+</div>
+<div class="panel-body">
+  <form class="form-horizontal" action="#" role="form">
+	<div class="form-group">
+	  <label style="float:left" class="col-sm-4">Course:<span style="color:#f00">*</span></label>
+
+	  <div class="col-sm-8 controls">
+	  <select id="certificate"  class="combos">
+	  <option value="">Select one...</option>';
+	  $resulta =mysql_query("select * from courses order by name");
+						  $num_resultsa = mysql_num_rows($resulta);	
+						  for ($i=0; $i <$num_resultsa; $i++) {
+							  $row=mysql_fetch_array($resulta);
+							  $name=stripslashes($row['name']);
+							  $k=stripslashes($row['id']);
+							  echo"<option value=\"".$k."θ".$name."\">".$name."</option>";
+					  }
+	  echo'</select>
+	  </div>
+	
 	</div>
+
+			
+</form>
+</div>
+</div>
+<!-- Panel Widget --> 
+
+
+
+
+<div class="panel widget">
+<div class="panel-heading vd_bg-grey">
+
+  <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Experience Details</h3>
+</div>
+<div class="panel-body">
+  <form class="form-horizontal" action="#" role="form">
+	<div class="form-group">
+	  <label style="float:left" class="col-sm-4">Experience:<span style="color:#f00">*</span></label>
+
+	  <div class="col-sm-8 controls">
+	  <select id="experience"  class="combos">
+	  <option value="">Select one...</option>';
+	  $resulta =mysql_query("select * from experience order by name");
+						  $num_resultsa = mysql_num_rows($resulta);	
+						  for ($i=0; $i <$num_resultsa; $i++) {
+							  $row=mysql_fetch_array($resulta);
+							  $name=stripslashes($row['name']);
+							  $k=stripslashes($row['id']);
+							  echo"<option value=\"".$k."θ".$name."\">".$name."</option>";
+					  }
+	  echo'</select>
+	  </div>
+	
 	</div>
-	</div>
+
+			
+</form>
+</div>
+</div>
+<!-- Panel Widget --> 
+
+
+
+<div class="panel widget">
+<div class="panel-heading vd_bg-grey">
+
+  <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Payslip Details</h3>
+</div>
+<div class="panel-body">
+  <form class="form-horizontal" action="#" role="form">
+	<div class="form-group">
+	  <label style="float:left" class="col-sm-4">Bank:<span style="color:#f00">*</span></label>
+
+	  <div class="col-sm-8 controls">
+	  <select id="bank"  class="combos">
+	  <option value="'.stripslashes($rowx['bid']).'#'.stripslashes($rowx['bname']).'" selected="selected">'.stripslashes($rowx['bname']).'</option>';
+	  $resulta =mysql_query("select * from banktbl order by name");
+						  $num_resultsa = mysql_num_rows($resulta);	
+						  for ($i=0; $i <$num_resultsa; $i++) {
+							  $row=mysql_fetch_array($resulta);
+							  $name=stripslashes($row['name']);
+							  $bid=stripslashes($row['id']);
+							  echo"<option value=\"".$bid."#".$name."\">".$name."</option>";
+					  }
+	  echo'</select>
+	  </div>
 	
 	</div>
 	
+	<div class="form-group">
+	<label style="float:left" class="col-sm-4">Branch Name:<span style="color:#f00">*</span></label>
+	<div class="col-sm-8 controls">
+	<input type="text" id="branchname" name="field" class="in_field" value="'.stripslashes($rowx['branchname']).'" /> 
 	</div>
-		<div class="cleaner"></div>		
-		<div class="col-md-6">
-		<div class="panel widget">
-		<div class="panel-heading vd_bg-grey">
-								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>PAYSLIP DETAILS</h5>
-								</div>
-								<div class="panel-body">
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Bank:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-					
-		                       <div class="ui-widget"  style="float:right; margin-right:8%">
-						<select id="bank" class="combos">
-				<option value="">Select one...</option>';
-				$resulta =mysql_query("select * from banktbl order by name");
-									$num_resultsa = mysql_num_rows($resulta);	
-									for ($i=0; $i <$num_resultsa; $i++) {
-										$row=mysql_fetch_array($resulta);
-										$name=stripslashes($row['name']);
-										$bid=stripslashes($row['id']);
-										echo"<option value=\"".$bid."#".$name."\">".$name."</option>";
-								}
-								echo'</select>
-								</div>
-								</div>
-								</div>
-								<br/>
-						
-						
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Brnach Name:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
+  </div>
 
-								 
-                                <input type="text" id="branchname" name="field" class="in_field"/> 
-                                </div>
-                                </div><br/>
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">EFT CODE:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
+   <div class="form-group">
+	<label style="float:left" class="col-sm-4">EFT Code:<span style="color:#f00">*</span></label>
+	<div class="col-sm-8 controls">
+	<input type="text" id="eftcode" name="field" class="in_field" value="'.stripslashes($rowx['eftcode']).'" /> 
+	</div>
+  </div>
+  <div class="form-group">
+  <label style="float:left" class="col-sm-4">A/C No:<span style="color:#f00">*</span></label>
+  <div class="col-sm-8 controls">
+  <input type="text" id="acno" name="field" class="in_field" value="'.stripslashes($rowx['acno']).'" /> 
+  </div>
+</div>
 
-							
-                                <input type="text" id="eftcode" name="field" class="in_field"/> 
-                                </div></div><br/>
-                                
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Acc No:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Pin No:<span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls">
+<input type="text" id="pinno" name="field" class="in_field" value="'.stripslashes($rowx['no']).'" /> 
+</div>
+</div>
 
-								
-                                <input type="text" id="acno" name="field" class="in_field"/> 
-                                </div>
-                                </div>
-                                <br/>
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Pin No:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-						
+   <div class="form-group">
+	<label style="float:left" class="col-sm-4">NHIF No:<span style="color:#f00">*</span></label>
+	<div class="col-sm-8 controls">
+	<input type="text" id="nhif" name="field" class="in_field" value="'.stripslashes($rowx['nhif']).'" /> 
+	</div>
+  </div>
 
-                                <input type="text" id="pinno" name="field" class="in_field"/> 
-                                </div>
-                                </div>
-                                <br/>
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">NHIF No:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-								
-								
-                                <input type="text" id="nhif" name="field" class="in_field"/> 
-                                </div>
-                                </div>
-                                <br/>
-                                
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">NSSF No:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-								 
-                                <input type="text" id="nssf" name="field" class="in_field"/> 
-                                </div>
-                                </div>
-                                
-								<div class="cleaner_h5"></div>						
-									
-								</div>
-								</div>
-								</div>
-								</div>
-									
-									<div class="col-md-6">
-									<div class="panel widget">
-									<div class="panel-heading vd_bg-grey">
-																
-								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>SKILLS</h5>
-								
-								</div>
-								<div class="panel-body">
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Skill:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-								
-								<input style=" text-transform:uppercase" type="text" id="skill" name="field" class="in_field" placeholder="Type a Skill Press and Enter..."/> 
-								</div>
-								</div>
-								
-								<div class="cleaner_h5"></div>
-								<div id="skills" style="width:100%;"></div>
-								</div>
-								</div>
-								</div>
-								
-								<div class="col-md-6">
-								<div class="panel widget">
-								<div class="panel-heading vd_bg-grey">
-							
-								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>HOBBIES</h5>
-								</div>
-								<div class="panel-body">
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Hobby:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-								
-								<input type="text" id="hobby" name="field" class="in_field" placeholder="Type a Hobby Press and Enter..."/> 
-								</div>
-								</div>
-								<div class="cleaner_h5"></div>
-								<div id="hobbies" style="width:100%;"></div>
-								<div class="cleaner"></div>
-								
-								</div>
-								</div>
-								</div>
-								
-								<div class="col-md-6">
-								<div class="panel widget">
-								<div class="panel-heading vd_bg-grey">
-								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>PROFILE PICTURE UPLOAD</h5>
-								</div>
-								<div class="panel-body">
-								
-								</form>
-								
-								<div class="col-sm-8">            
-                    <div class="tab-content mgbt-xs-20">
-                      <div class="tab-pane active" id="tab6">
+   <div class="form-group">
+	<label style="float:left" class="col-sm-4">NSSF No:<span style="color:#f00">*</span></label>
+	<div class="col-sm-8 controls">
+	<input type="text" id="nssf" name="field" class="in_field" value="'.stripslashes($rowx['nssf']).'" /> 
+	</div>
+  </div>
 
-								
-								<form method="post" action="upload.php" enctype="multipart/form-data" target="leiframe">
-      							 <dd class="custuploadblock_js">
-                        <input style="opacity:0; float:left;" name="image" id="photoupload"  
-                        class="transfileform_js" type="file">
-                        </dd>
-								
-								<iframe name="leiframe" id="leiframe" class="leiframe">
-								</iframe>
-                            	<input type="hidden" id="stamp" name="stamp" value="'.$emp.'"/>
-								<input type="hidden" id="id" name="id"  value="1"/>
-								<div class="cleaner_h5"></div>
-     							<input type="submit" value="upload" id="send"  style="width:40%;margin-left:40%; float:left; cursor:pointer"class="in_field"/>
-								</form>
-								</div>
-								</div>
-								</div>
-								<br/></br/>
-								<div class="cleaner_h5"></div>
-								<br/><br/>
-								<br/>
-								<h5 class="panel-title">OTHER FILES UPLOAD</h5>
-								<div class="cleaner_h5"></div>
-								<div class="content">
-											<div id="drop-files" ondragover="return false">
-												Drop Images/Documents Here
-											</div>
-											
-											<div id="uploaded-holder">
-												<div id="dropped-files">
-													<div id="upload-button">
-														<a href="#" class="upload">Upload!</a>
-														<a href="#" class="delete">delete</a>
-														<span>0 Files</span>
-													</div>
-												</div>
-												<div id="extra-files">
-													<div class="number">
-														0
-													</div>
-													<div id="file-list">
-														<ul></ul>
-													</div>
-												</div>
-											</div>
-											
-											<div id="loading">
-												<div id="loading-bar">
-													<div class="loading-color"> </div>
-												</div>
-												<div id="loading-content"></div>
-											</div>
-											</div>
-								
-							</div>
-								</div>
-								</div>
-								</div>
 
-								</div>
-								</div>
-								</div>
-								</div>
-								
-   							';
-							
-							break;	
+
+			
+</form>
+</div>
+</div>
+<!-- Panel Widget --> 
+
+
+
+<div class="panel widget">
+<div class="panel-heading vd_bg-grey">
+
+  <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Skills:</h3>
+</div>
+<div class="panel-body">
+  <form class="form-horizontal" action="#" role="form">
+	<div class="form-group">
+	  <label style="float:left" class="col-sm-4">Skills:<span style="color:#f00">*</span></label>
+
+	  <div class="col-sm-8 controls">
+	  <input style=" text-transform:uppercase" type="text" id="skill" name="field" class="in_field" placeholder="Type a Skill Press and Enter..."/> 
+	  
+	 
+	  </div>
+	
+	</div>
+
+			
+</form>
+</div>
+</div>
+<!-- Panel Widget --> 
+
+<div class="panel widget">
+<div class="panel-heading vd_bg-grey">
+
+  <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>Hobbies:</h3>
+</div>
+<div class="panel-body">
+  <form class="form-horizontal" action="#" role="form">
+	<div class="form-group">
+	  <label style="float:left" class="col-sm-4">Hobbies:<span style="color:#f00">*</span></label>
+
+	  <div class="col-sm-8 controls">
+	  <input type="text" id="hobby" name="field" class="in_field" placeholder="Type a Hobby Press and Enter..."/> 	
+	    </div>
+	
+	</div>
+
+			
+</form>
+</div>
+</div>
+<!-- Panel Widget --> 
+
+
+
+
+
+
+</div>
+<!-- col-md-6 --> 
+
+
+
+</div>
+<!-- col-md-6 --> 
+
+
+
+
+
+	 <div class="col-md-6">
+	<div class="panel widget">
+	
+	  <div class="panel-body">
+	
+
+	 <div class="form-group form-actions">
+		<div class="col-sm-4"> </div>
+		<div class="col-sm-7">
+		  <button class="btn vd_btn vd_bg-green vd_white" type="button" onclick="addnewemp(1)"><i class="icon-ok"></i> Save</button>
+		  <button class="btn vd_btn" type="button" onclick="hidenewstude()">Cancel</button>
+		  <div id="message" style="width:40px;height:40px;float:right"></div>
+		</div>
+	  </div>
+
+
+	  </div>
+	</div>
+	<!-- Panel Widget --> 
+  </div>
+  <!-- col-md-12 -->
+
+
+
+
+
+</div>
+<!-- row --> 
+  </div>
+
+
+
+
+</div>
+<!-- .vd_content-section --> 
+
+</div>
+<!-- .vd_content --> 
+</div>
+<!-- .vd_container --> ';
+
+echo "<script>  $( '#datepicker-normal' ).datepicker({ dateFormat: 'dd/mm/yy'}); $( '#datepicker-date' ).datepicker({ dateFormat: 'dd'});$( '#pendate' ).datepicker({ dateFormat: 'dd'});$( '#waivermonth' ).datepicker({ dateFormat: 'mm_yy'}); </script>";
+
+
+break;
+
+
 							
 					case 2:
 					$cat=$_GET['cat'];
@@ -1105,7 +978,7 @@ case 1:
                         <div class="col-sm-8 controls">
 								 
                                		
-								<div class="ui-widget"  style="float:right; margin-right:8%">
+								
 	<select id="language" class="combos">
 		<option value="">Select one...</option>';
 
@@ -1118,7 +991,7 @@ case 1:
 								echo"<option value=\"".$k."θ".$name."\">".$name."</option>";
 						}
 		echo'</select>
-</div>
+
 <div class="cleaner_h5"></div>
 <div id="languages" style="width:100%;">';
 $parts=explode(';',stripslashes($rowx['languages']));
@@ -1382,17 +1255,107 @@ echo'</div></div>
 								</div>
 								</div>
 								
+
+								
+								<div class="col-md-6">
+								<div class="panel widget">
+											   
+			   
+			   
+											   
+			   
+											   <div class="panel widget">
+											   
+											   <div class="panel-heading vd_bg-grey">
+											   <h5 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>MEDICAL DETAILS</h5>
+											   </div>
+			   
+			   
+											   <div class="panel-body">
+												<div class="form-group">
+									   <label style="float:left" class="col-sm-4">B.Group:</label>
+									   <div class="col-sm-8 controls">
+											   <select class="select" id="bgroup" name="bgroup" style="float:right ;text-transform:uppercase">
+												<option value="'.stripslashes($rowx['bgroup']).'" selected="selected">'.stripslashes($rowx['bgroup']).'</option>
+											   <option value="A Rh+">A Rh+</option>
+											   <option value="A Rh-">A Rh-</option>
+											   <option value="B Rh+">B Rh+</option>
+											   <option value="B Rh-">B Rh-</option>
+											   <option value="AB Rh+">AB Rh+</option>
+											   <option value="AB Rh-">AB Rh-</option>
+											   <option value="O Rh+">O Rh+</option>
+											   <option value="O Rh-">O Rh-</option>
+											   </select>
+											   </div>
+											   </div>
+											   
+												<div class="form-group">
+									   <label style="float:left" class="col-sm-4">Known Health Problems/Alergies:<span style="color:#f00">*</span></label>
+									   <div class="col-sm-8 controls">
+										   
+											   
+											   <textarea class="textarea" id="alergy">'.stripslashes($rowx['alergy']).'</textarea>
+											   
+								   
+											   </div>
+											   </div>
+									   
+			   
+											   </div>
+											   </div>
+											   </div>
+											   </div>
+											   
+								<div class="col-md-6">
+								<div class="panel widget">										   
+			   
+			   
+													   
+											   <div class="panel widget">
+											   
+											   <div class="panel-heading vd_bg-grey">
+											   <h5 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>EDUCATION DETAILS</h5>
+											   </div>
+			   
+			   
+											   <div class="panel-body">
+												<div class="form-group">
+									   <label style="float:left" class="col-sm-4">Course:</label>
+									   <div class="col-sm-8 controls">
+									   <select id="certificate"  class="combos">
+									   <option value="">Select one...</option>';
+									   $resulta =mysql_query("select * from courses order by name");
+														   $num_resultsa = mysql_num_rows($resulta);	
+														   for ($i=0; $i <$num_resultsa; $i++) {
+															   $row=mysql_fetch_array($resulta);
+															   $name=stripslashes($row['name']);
+															   $k=stripslashes($row['id']);
+															   echo"<option value=\"".$k."θ".$name."\">".$name."</option>";
+													   }
+									   echo'</select>
+											   </div>
+											   </div>
+											   
+											
+									   
+			   
+											   </div>
+											   </div>
+											   </div>
+											   </div>
+											   
+								
 								  <div class="col-md-6">
                  <div class="panel widget">
 								
 
 
-								<div class="col-sm-6 mar" id="personal">
+								
 
 								<div class="panel widget">
 								
 								<div class="panel-heading vd_bg-grey">
-								<h5 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>MEDICAL DETAILS</h5>
+								<h5 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>EXPERIENCE DETAILS</h5>
 								</div>
 
 
@@ -1400,38 +1363,176 @@ echo'</div></div>
 								 <div class="form-group">
                         <label style="float:left" class="col-sm-4">B.Group:</label>
                         <div class="col-sm-8 controls">
-                                <select class="select" id="bgroup" name="bgroup" style="float:right ;text-transform:uppercase">
-								 <option value="'.stripslashes($rowx['bgroup']).'" selected="selected">'.stripslashes($rowx['bgroup']).'</option>
-								<option value="A Rh+">A Rh+</option>
-								<option value="A Rh-">A Rh-</option>
-								<option value="B Rh+">B Rh+</option>
-								<option value="B Rh-">B Rh-</option>
-								<option value="AB Rh+">AB Rh+</option>
-								<option value="AB Rh-">AB Rh-</option>
-								<option value="O Rh+">O Rh+</option>
-								<option value="O Rh-">O Rh-</option>
-								</select>
+						<select id="experience" class="combos">
+						<option value="">Select one...</option>';
+						$resulta =mysql_query("select * from experience order by name");
+											$num_resultsa = mysql_num_rows($resulta);	
+											for ($i=0; $i <$num_resultsa; $i++) {
+												$row=mysql_fetch_array($resulta);
+												$k=stripslashes($row['id']);
+												$name=stripslashes($row['name']);
+												echo"<option value=\"".$k."θ".$name."\">".$name."</option>";
+										}
+						echo'</select>
 								</div>
 								</div>
 								
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Known Health Problems/Alergies:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-							
-								
-								<textarea class="textarea" id="alergy">'.stripslashes($rowx['alergy']).'</textarea>
-								
-					
-								</div>
-								</div>
-						
+												
 
 								</div>
 								</div>
 								</div>
 								</div>
-								</div>
 								
+								
+								<div class="col-md-6">
+								<div class="panel widget">
+											   
+			   
+			   
+											   
+			   
+											   <div class="panel widget">
+											   
+											   <div class="panel-heading vd_bg-grey">
+											   <h5 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>PAYSLIP DETAILS</h5>
+											   </div>
+			   
+			   
+											   <div class="panel-body">
+												<div class="form-group">
+									   <label style="float:left" class="col-sm-4">Bank:</label>
+									   <div class="col-sm-8 controls">
+									   <select id="bank" class="combos">
+									   <option value="'.stripslashes($rowx['bid']).'#'.stripslashes($rowx['bname']).'" selected="selected">'.stripslashes($rowx['bname']).'</option>';
+									   $resulta =mysql_query("select * from banktbl order by name");
+														   $num_resultsa = mysql_num_rows($resulta);	
+														   for ($i=0; $i <$num_resultsa; $i++) {
+															   $row=mysql_fetch_array($resulta);
+															   $name=stripslashes($row['name']);
+															   $bid=stripslashes($row['id']);
+															   echo"<option value=\"".$bid."#".$name."\">".$name."</option>";
+													   }
+									   echo'</select><br/><br/>
+											   </div>
+											   </div>
+											   
+												<div class="form-group">
+									   <label style="float:left" class="col-sm-4">Branch Name:<span style="color:#f00">*</span></label>
+									   <div class="col-sm-8 controls">										   
+											   
+									   <input type="text" id="branchname" name="field" class="in_field" value="'.stripslashes($rowx['branchname']).'" /> 
+											 
+									   <br/><br/>
+											   </div>
+											   </div><br/><br/>
+											   <div class="form-group">
+									   <label style="float:left" class="col-sm-4">EFT Code:<span style="color:#f00">*</span></label>
+									   <div class="col-sm-8 controls">										   
+											   
+									   <input type="text" id="eftcode" name="field" class="in_field" value="'.stripslashes($rowx['eftcode']).'" /> 
+									   <br/><br/>
+								   
+											   </div>
+											   </div><br/><br/>
+											   <div class="form-group">
+									   <label style="float:left" class="col-sm-4">A/C No:<span style="color:#f00">*</span></label>
+									   <div class="col-sm-8 controls">										   
+											   
+									   <input type="text" id="acno" name="field" class="in_field" value="'.stripslashes($rowx['acno']).'" /> 
+									   <br/><br/>
+								   
+											   </div>
+											   </div><br/><br/>
+											   <div class="form-group">
+											   <label style="float:left" class="col-sm-4">N.H.I.F No:<span style="color:#f00">*</span></label>
+											   <div class="col-sm-8 controls">										   
+													   
+											   <input type="text" id="nhif" name="field" class="in_field" value="'.stripslashes($rowx['nhif']).'" /> 
+													 
+										   
+													   </div>
+													   </div>
+													   <br/><br/>
+													   <div class="form-group">
+											   <label style="float:left" class="col-sm-4">NSSF No:<span style="color:#f00">*</span></label>
+											   <div class="col-sm-8 controls">										   
+													   
+											   <input type="text" id="nssf" name="field" class="in_field" value="'.stripslashes($rowx['nssf']).'" /> 
+													 
+										   
+													   </div>
+													   </div>
+									   
+			   
+											   </div>
+											   </div>
+											   </div>
+											   </div>
+
+								
+								
+											   <div class="col-md-6">
+											   <div class="panel widget">
+															  
+							  
+							  
+															  
+							  
+															  <div class="panel widget">
+															  
+															  <div class="panel-heading vd_bg-grey">
+															  <h5 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>SKILLS</h5>
+															  </div>
+							  
+							  
+															  <div class="panel-body">
+															   <div class="form-group">
+													  <label style="float:left" class="col-sm-4">Skills:</label>
+													  <div class="col-sm-8 controls">
+													  <input style=" text-transform:uppercase" type="text" id="skill" name="field" class="in_field" placeholder="Type a Skill Press and Enter..."/> 
+															  </div>
+															  </div>
+															  
+															  
+													  
+							  
+															  </div>
+															  </div>
+															  </div>
+															  </div>
+			   
+											   <div class="col-md-6">
+											   <div class="panel widget">
+															  
+							  
+							  
+															  
+							  
+															  <div class="panel widget">
+															  
+															  <div class="panel-heading vd_bg-grey">
+															  <h5 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span>HOBBIES</h5>
+															  </div>
+							  
+							  
+															  <div class="panel-body">
+															   <div class="form-group">
+													  <label style="float:left" class="col-sm-4">Hobby:</label>
+													  <div class="col-sm-8 controls">
+													  <input type="text" id="hobby" name="field" class="in_field" placeholder="Type a Hobby Press and Enter..."/> 
+
+															  </div>
+															  </div>
+															  
+															  
+													  
+							  
+															  </div>
+															  </div>
+															  </div>
+															  </div>
+			   
 								
 								<div class="col-sm-6 mar" id="personal">
 								<div class="panel widget">
@@ -1470,242 +1571,13 @@ echo'</div></div>
 								</div>
 								</div>
 							
-
-								<div class="col-md-6">
-								<div class="panel widget">
-								
-								<div class="panel-heading vd_bg-grey">
-								
-								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>EDUCATION DETAILS</h5>
-								</div>
-								
-								<div class="panel-body">
-								 <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Course:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-
-								
-								<div class="ui-widget" style="float:right; margin-right:8%">
-	<select id="certificate"  class="combos">
-		<option value="">Select one...</option>';
-		$resulta =mysql_query("select * from courses  order by name");
-							$num_resultsa = mysql_num_rows($resulta);
-							for ($i=0; $i <$num_resultsa; $i++) {
-								$row=mysql_fetch_array($resulta);
-								$name=stripslashes($row['name']);
-								$k=stripslashes($row['id']);
-								echo"<option value=\"".$k."θ".$name."\">".$name."</option>";
-						}
-		echo'</select>
-</div><div class="cleaner_h5"></div>
-		
-		<div id="bachelors" style="width:100%;">';
-$parts=explode(';',stripslashes($rowx['education']));
-		foreach ($parts as $key => $val) {
-		$_SESSION['edu'][$key]=$val;
-		if(strlen($val)>0){
-		echo'<div class="tag alert-info alert-dismissable" id="edutag'.$key.'"><button type="button" class="close" onclick="dismissbach(\''.$key.'\')"  aria-hidden="true">&times;</button>'.$val.'</div>';
-		}
-		}
-echo'</div>
-	<div class="cleaner"></div>
-	</div>
-	</div>
-	</div>
-	</div>
-							
-							<div class="col-md-6">
-	<div class="panel-widget">
-	<div class="panel-heading vd_bg-grey">							
-							<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>EXPERIENCE DETAILS</h5>		
-						</div>
-<div class="panel-body">
- <div class="form-group">
-                        <label style="float:left" class="col-sm-4">Experience:<span style="color:#f00">*</span></label>
-                        <div class="col-sm-8 controls">
-					
-                               		
-								<div class="ui-widget"  style="float:right; margin-right:8%">
-	<select id="experience" class="combos">
-		<option value="">Select one...</option>';
-		$resulta =mysql_query("select * from experience order by name");
-							$num_resultsa = mysql_num_rows($resulta);
-							for ($i=0; $i <$num_resultsa; $i++) {
-								$row=mysql_fetch_array($resulta);
-								$name=stripslashes($row['name']);
-								$k=stripslashes($row['id']);
-								echo"<option value=\"".$k."θ".$name."\">".$name."</option>";
-						}
-		echo'</select>
-</div>
-
-			<div class="cleaner_h5"></div>								
-	<div id="experiences" style="width:100%;">';
-		$parts=explode(';',stripslashes($rowx['experience']));
-		foreach ($parts as $key => $val) {
-		$_SESSION['exp'][$key]=$val;
-		if(strlen($val)>0){
-		echo"<div class=\"tag alert-info alert-dismissable\" id=\"exptag".$key."\"><button type=\"button\" class=\"close\" onclick=\"dismissexp('".$key."')\"  aria-hidden=\"true\">&times;</button>".$val."</div>";
-		}
-		}
-echo'</div>
-	</div>
-</div>
-	</div>
-	</div>
-	
-	
-	
-		<div class="cleaner"></div>	
-		
-		<div class="panel-heading vd_bg-grey">
-								<h5>PAYSLIP DETAILS</h5>
-</div>
-
-								<a class="labels">Bank:</a>
-                               <div class="ui-widget"  style="float:right; margin-right:8%">
-				<select id="bank" class="combos">
-		<option value="'.stripslashes($rowx['bid']).'#'.stripslashes($rowx['bname']).'" selected="selected">'.stripslashes($rowx['bname']).'</option>';
-		$resulta =mysql_query("select * from banktbl order by name");
-							$num_resultsa = mysql_num_rows($resulta);
-							for ($i=0; $i <$num_resultsa; $i++) {
-								$row=mysql_fetch_array($resulta);
-								$name=stripslashes($row['name']);
-								$bid=stripslashes($row['id']);
-								echo"<option value=\"".$bid."#".$name."\">".$name."</option>";
-						}
-		echo'</select>
-</div>
-								<div class="cleaner_h5"></div>
-
-								 <a class="labels">Branch Name:</a>
-                                <input type="text" id="branchname" name="field" class="in_field" value="'.stripslashes($rowx['branchname']).'" /> 
-								<div class="cleaner_h5"></div>
-
-								 <a class="labels">EFT Code:</a>
-                                <input type="text" id="eftcode" name="field" class="in_field" value="'.stripslashes($rowx['eftcode']).'" /> 
-								<div class="cleaner_h5"></div>
-
-
-								 <a class="labels">A/C No:</a>
-                                <input type="text" id="acno" name="field" class="in_field" value="'.stripslashes($rowx['acno']).'" /> 
-								<div class="cleaner_h5"></div>
-								<a class="labels">NHIF No.:</a>
-                                <input type="text" id="nhif" name="field" class="in_field" value="'.stripslashes($rowx['nhif']).'" /> 
-								<div class="cleaner_h5"></div>
-								 <a class="labels">NSSF No.:</a>
-                                <input type="text" id="nssf" name="field" class="in_field" value="'.stripslashes($rowx['nssf']).'" /> 
-								<div class="cleaner_h5"></div>						
-									
-								</div>
-										<div class="col-sm-3" id="personal">
-								
-										<div class="panel-heading vd_bg-grey">
-										<h5>SKILLS</h5>
-										</div>
-
-								<a class="labels">Skill:</a>
-								<input style=" text-transform:uppercase" type="text" id="skill" name="field" class="in_field" placeholder="Type a Skill Press and Enter..."/> 
-								<div class="cleaner_h5"></div>
-								<div id="skills" style="width:100%;">';
-		$parts=explode(';',stripslashes($rowx['skills']));
-		foreach ($parts as $key => $val) {
-		$_SESSION['skl'][$key]=$val;
-		if(strlen($val)>0){
-		echo"<div class=\"tag alert-info alert-dismissable\" id=\"skilltag".$key."\"><button type=\"button\" class=\"close\" onclick=\"dismissskl('".$key."')\"  aria-hidden=\"true\">&times;</button>".$val."</div>";
-		}
-		}
-echo'</div>
-								<div class="cleaner"></div>
-
-								<div class="panel-heading vd_bg-grey">
-								<h5>HOBBIES</h5>
-								</div>
-
-
-								<a class="labels">Hobby:</a>
-								<input type="text" id="hobby" name="field" class="in_field" placeholder="Type a Hobby Press and Enter..."/> 
-								<div class="cleaner_h5"></div>
-								<div id="hobbies" style="width:100%;">';
-		$parts=explode(';',stripslashes($rowx['hobbies']));
-		foreach ($parts as $key => $val) {
-		$_SESSION['hobby'][$key]=$val;
-		if(strlen($val)>0){
-		echo"<div class=\"tag alert-info alert-dismissable\" id=\"hobbytag".$key."\"><button type=\"button\" class=\"close\" onclick=\"dismisshobby('".$key."')\"  aria-hidden=\"true\">&times;</button>".$val."</div>";
-		}
-		}
-echo'</div>
-								<div class="cleaner"></div>
-
-								<div class="panel-heading vd_bg-grey">
-								<h5>PROFILE PICTURE UPLOAD</h5>
-								</div>
-								
-								<div class="cleaner_h5"></div>
-								</form>
-								<form method="post" action="upload.php" enctype="multipart/form-data" target="leiframe">
-      							
-								<dd class="custuploadblock_js">
-								<input style="opacity:0; float:left;" name="image" id="photoupload"  
-								class="transfileform_js" type="file">
-								</dd>
-								<iframe name="leiframe" id="leiframe" class="leiframe">
-								</iframe>
-                            	<input type="hidden" id="stamp" name="stamp" value="'.$emp.'"/>
-								<input type="hidden" id="id" name="id"  value="2"/>
-								<div class="cleaner_h5"></div>
-     							<input type="submit" value="upload" id="send"  style="width:40%;margin-left:40%; float:left; cursor:pointer"class="in_field"/>
-								</form>
-								<div class="cleaner_h5"></div>
-
-								<div class="panel-heading vd_bg-grey">
-								<h5>OTHER FILES UPLOAD</h5>
-								</div>
-								
-								
-								<div class="cleaner_h5"></div>
-								<div class="content">
-											<div id="drop-files" ondragover="return false">
-												Drop Images/Documents Here
-											</div>
-											
-											<div id="uploaded-holder">
-												<div id="dropped-files">
-													<div id="upload-button">
-														<a href="#" class="upload">Upload!</a>
-														<a href="#" class="delete">delete</a>
-														<span>0 Files</span>
-													</div>
-												</div>
-												<div id="extra-files">
-													<div class="number">
-														0
-													</div>
-													<div id="file-list">
-														<ul></ul>
-													</div>
-												</div>
-											</div>
-											
-											<div id="loading">
-												<div id="loading-bar">
-													<div class="loading-color"> </div>
-												</div>
-												<div id="loading-content"></div>
-											</div>
-											</div>
-								
-							</div>
-								</div>
-
-								</div>
-								<!-- Panel Widget --> 
 							  </div>
 							  </div>
 							  </div>
 							  </div>
 							  </div>
 							  <!-- col-md-6 --> 
+							  
 								
 								<script>
 								var body = document.body,

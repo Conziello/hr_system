@@ -479,12 +479,13 @@ function addnewemp(a){
 		return;
 	}
 	
-	var bgroup=$('#bgroup').val();
-	var alergy=$('#alergy').val();
+	
 	
 	var ename=$('#ename').val();
 	var ephone=$('#ephone').val();
 	var epostal=$('#epostal').val();
+	var bgroup=$('#bgroup').val();
+	var alergy=$('#alergy').val();
 	/*
 	if(ename==''||ephone==''){
 	$().customAlert();
@@ -510,7 +511,7 @@ function addnewemp(a){
 	$("#newemployee").html('<img id="img-spinner" src="images/load.gif" alt="Loading"/>');
 	$.ajax({
 	url:'data.php',
-	data:{id:1,a:a,emp:emp,biomid:biomid,fname:fname,mname:mname,lname:lname,dob:dob,mar:mar,gender:gender,idno:idno,phone:phone,phone2:phone2,email:email,phy:phy,town:town,sal:sal,empcateg:empcateg,doe:doe,emptype:emptype,pos:pos,dept:dept,jobdesc:jobdesc,contfrom:contfrom,contto:contto, bgroup:bgroup,alergy:alergy,ename:ename,ephone:ephone,epostal:epostal,bid:bid,bname:bname,branchname:branchname,eftcode:eftcode,acno:acno,pinno:pinno,nhif:nhif,nssf:nssf,branch:branch,clearance:clearance},
+	data:{id:1,a:a,emp:emp,biomid:biomid,fname:fname,mname:mname,lname:lname,dob:dob,mar:mar,gender:gender,idno:idno,phone:phone,phone2:phone2,email:email,phy:phy,town:town,sal:sal,empcateg:empcateg,doe:doe,emptype:emptype,pos:pos,dept:dept,jobdesc:jobdesc,contfrom:contfrom,contto:contto,ename:ename,ephone:ephone,epostal:epostal,bgroup:bgroup,alergy:alergy,bid:bid,bname:bname,branchname:branchname,eftcode:eftcode,acno:acno,pinno:pinno,nhif:nhif,nssf:nssf,branch:branch,clearance:clearance},
 	success:function(data){
 	$('#newemployee').html(data);
 	
