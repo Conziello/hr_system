@@ -630,11 +630,17 @@ if($arr[231]=='YES'){
                                         } else {
                                             echo '<li><p style="color:#ccc" disabled="disabled">Archive Employee Record</p></li>';
                                         }
-                                        if ($arr[203] == 'YES') {
-                                            echo '  <li><a onclick="seeemp(7)">Employee File</a></li>';
-                                        } else {
-                                            echo '<li><p style="color:#ccc" disabled="disabled">Employee File</p></li>';
-                                        }
+
+                                        if($arr[203]=='YES'){
+                                            echo'<li><a onclick="employeefile();">Employee File Record</a></li>';
+                                           }else {echo'<li><p style="color:#ccc" disabled="disabled">Employee File</p></li>';}
+
+
+                                        // if ($arr[203] == 'YES') {
+                                        //     echo '  <li><a onclick="seeemp(7)">Employee File</a></li>';
+                                        // } else {
+                                        //     echo '<li><p style="color:#ccc" disabled="disabled">Employee File</p></li>';
+                                        // }
                                         if ($arr[206] == 'YES') {
                                             echo '<li><a onclick="exemp()">Ex-Employees Panel</a></li>';
                                         } else {
@@ -657,8 +663,8 @@ if($arr[231]=='YES'){
                                     <ul>
 
                                         <li>
-                                            <a href="#" onclick="cardregister()">
-                                                <span class="menu-text">Card Registry</span>
+                                            <a href="#" onclick="dashboard()">
+                                                <span class="menu-text">Dashboard</span>
                                             </a></li>
 
 
@@ -714,6 +720,28 @@ if($arr[231]=='YES'){
                                     </ul>
                                 </div>
                             </li>
+
+                            
+                            <li>
+                                <a href="javascript:void(0);" data-action="click-trigger">
+                                    <span class="menu-icon"><i class="fa fa-calendar"> </i></span>
+                                    <span class="menu-text">Attendance</span>
+                                    <span class="menu-badge"><span class="badge vd_bg-black-30"><i
+                                                    class="fa fa-angle-down"></i></span></span>
+                                </a>
+                                <div class="child-menu" data-action="click-target">
+                                    <ul>
+                                        <li>
+                                            <a href="#" onclick="takeatt()">
+                                                <span class="menu-text">Employee Attendance</span>
+                                            </a></li>
+                                        
+
+                                    </ul>
+                                </div>
+                            </li>
+
+
 
 
                             <li>
@@ -794,14 +822,7 @@ if($arr[231]=='YES'){
                                 </div>
                             </li>
 
-                            <li>
-                                <a href="#" onclick="reports()">
-                                    <span class="menu-icon"><i class="fa fa-calendar"> </i></span>
-                                    <span class="menu-text">Attendance</span>
-                                </a>
-
-                            </li>
-
+                          
                             <li>
                                 <a href="#" onclick="reports()">
                                     <span class="menu-icon"><i class="fa fa-signal"> </i></span>
@@ -902,7 +923,7 @@ if($arr[231]=='YES'){
 
                 <script>
                     $().customAlert();
-                    alert('WELCOME!', '<p>WELCOME ADMIN.<br/>YOU HAVE:<br/><b style="cursor:pointer" onclick="dashboard()"><u><?php echo $mes ?> NEW MESSAGES.</u></b><br/><b><?php echo $tasks ?></b> TASKS FOR THE DAY.<input type="hidden" class="okBtn" value="OK"  /></p>');
+                    swal('WELCOME!', '<p>WELCOME ADMIN.<br/>YOU HAVE:<br/><b style="cursor:pointer" onclick="dashboard()"><u><?php echo $mes ?> NEW MESSAGES.</u></b><br/><b><?php echo $tasks ?></b> TASKS FOR THE DAY.<input type="hidden" class="okBtn" value="OK"  /></p>');
                     e.preventDefault();
                 </script>
 

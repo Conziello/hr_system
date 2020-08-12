@@ -343,9 +343,13 @@ $(function() {$( "#radio" ).buttonset();});
 				if($arr[205]=='YES'){
             	 	echo'<li><a onclick="seeemp(10);">Archive Employee Record</a></li>';
 					}else {echo'<li><p style="color:#ccc" disabled="disabled">Archive Employee Record</p></li>';}
-				 if($arr[203]=='YES'){
-                	echo'  <li><a onclick="seeemp(7)">Employee File</a></li>';
-					}else {echo'<li><p style="color:#ccc" disabled="disabled">Employee File</p></li>';}
+				//  if($arr[203]=='YES'){
+                // 	echo'  <li><a onclick="seeemp(7)">Employee File</a></li>';
+				// 	}else {echo'<li><p style="color:#ccc" disabled="disabled">Employee File</p></li>';}
+				if($arr[203]=='YES'){
+					echo'<li><a onclick="employeefile();">Employee File Record</a></li>';
+				   }else {echo'<li><p style="color:#ccc" disabled="disabled">Employee File</p></li>';}
+
 				  if($arr[206]=='YES'){
                 	echo'<li><a onclick="exemp()">Ex-Employees Panel</a></li>';
 					}else {echo'<li><p style="color:#ccc" disabled="disabled">Ex-Employees Panel</p></li>';}
@@ -541,7 +545,7 @@ $tasks = mysql_num_rows($result);
   
      <script>
 	 $().customAlert();
-		alert('WELCOME!', '<p>WELCOME ADMIN.<br/>YOU HAVE:<br/><b style="cursor:pointer" onclick="dashboard()"><u><?php echo $mes ?> NEW MESSAGES.</u></b><br/><b><?php echo $tasks ?></b> TASKS FOR THE DAY.<input type="hidden" class="okBtn" value="OK"  /></p>');
+		swal('success', '<p>WELCOME ADMIN.<br/>YOU HAVE:<br/><b style="cursor:pointer" onclick="dashboard()"><u><?php echo $mes ?> NEW MESSAGES.</u></b><br/><b><?php echo $tasks ?></b> TASKS FOR THE DAY.<input type="hidden" class="okBtn" value="OK"  /></p>');
 		e.preventDefault();	
 	 </script>
      

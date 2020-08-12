@@ -523,11 +523,22 @@ function seeemp(a){
 	$("#mainp").html('<img id="img-spinner" src="images/load.gif" style="position:absolute; top:45%; left:50%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',
-	data:{id:4,a:a},
+	data:{id:100,a:a},
 	success:function(data){
 	$('#mainp').html(data);
 	}
 	});
+}
+
+function employeefile(){
+	$("#mainp").html('<img id="img-spinner" src="img/spin.gif" style="position:absolute; width:30px;top:25%; left:60%" alt="Loading"/>');
+	$.ajax({
+	url:'bridge.php',
+	data:{id:102},
+	success:function(data){
+	$('#mainp').html(data);
+	}
+});
 }
 function empchart(param){
 	$("#mainp").html('<img id="img-spinner" src="images/load.gif" style="position:absolute; top:45%; left:50%" alt="Loading"/>');
@@ -689,7 +700,7 @@ function exemp(){
 	$("#mainp").html('<img id="img-spinner" src="images/load.gif" style="position:absolute; top:45%; left:50%" alt="Loading"/>');
 	$.ajax({
 	url:'bridge.php',
-	data:{id:9},
+	data:{id:20},
 	success:function(data){
 	$('#mainp').html(data);
 	}

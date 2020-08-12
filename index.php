@@ -102,11 +102,11 @@ if (isset($_SESSION['valid_user'])) {
             var passwd = $('#passwd').val();
             if (username == '') {
                 $().customAlert();
-                alert('Error!', '<p>Enter your Username!</p>');
+                swal('Error!', '<p>Enter your Username!</p>');
                 e.preventDefault();
             } else if (passwd == '') {
                 $().customAlert();
-                alert('Error!', '<p>Enter your password!</p>');
+                swal('Error!', '<p>Enter your password!</p>');
                 e.preventDefault();
             } else {
                 $('#message').html('<img id="img-spinner" src="images/load.gif" style="margin-top:20px" alt="Loading"/>');
@@ -115,12 +115,13 @@ if (isset($_SESSION['valid_user'])) {
                     data: {username: username, passwd: passwd},
                     success: function (data) {
                         if (data == 0) {
-                            $('#message').html('');
+                            // $('#message').html('');
+                            swal("Success","Login successful. redirecting......","success");
 
                         } else $('#message').html(data);
 
                         if (data == 0) {
-                            window.location.href = "main.php";
+                            window.location.href = "test1.php";
                         }
                     }
                 });

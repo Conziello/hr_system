@@ -1490,7 +1490,7 @@ echo'</div></div>
 															   <div class="form-group">
 													  <label style="float:left" class="col-sm-4">Skills:</label>
 													  <div class="col-sm-8 controls">
-													  <input style=" text-transform:uppercase" type="text" id="skill" name="field" class="in_field" placeholder="Type a Skill Press and Enter..."/> 
+													  <input style=" text-transform:uppercase" value="'.stripslashes($rowx['skills']).'"  type="text" id="skill" name="field" class="in_field" placeholder="Type a Skill Press and Enter..."/> 
 															  </div>
 															  </div>
 															  
@@ -1520,7 +1520,7 @@ echo'</div></div>
 															   <div class="form-group">
 													  <label style="float:left" class="col-sm-4">Hobby:</label>
 													  <div class="col-sm-8 controls">
-													  <input type="text" id="hobby" name="field" class="in_field" placeholder="Type a Hobby Press and Enter..."/> 
+													  <input type="text" id="hobby" value="'.stripslashes($rowx['hobbies']).'" name="field" class="in_field" placeholder="Type a Hobby Press and Enter..."/> 
 
 															  </div>
 															  </div>
@@ -1592,10 +1592,9 @@ echo'</div></div>
 
 
     case 6:
-        $param=0;
-        if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
-        else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
-        $result = mysql_query("insert into log values('','".$username." accesses Find Members Search Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
+      
+        echo"<script>$('.emp2').parent().find('input:first').focus().width(250);</script>";
+        $result = mysql_query("insert into log values('','".$username." accesses Find Employee Search Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");
         echo' <div class="vd_container" id="container">
         <div class="vd_content clearfix">
         <button class="btn vd_btn vd_bg-green" style="display:none" id="modaltrigger"  data-toggle="modal" data-target="#myModal"><a></a></button>
@@ -1732,6 +1731,7 @@ $emp=$_GET['param'];
 								<input type="button" value="Exit" id="submit"  style="padding:5px 5px; border-color:#fff; background:#f00; float:right; cursor:pointer;width:50px" class="in_field" onclick="hidenewstude();"/></div>
 								</h3>
 								</div>
+
 								<input type="hidden" id="stamp" value="'.$emp.'"/>
 								<div class="cleaner" style="border-bottom:2px solid #75c5cf"></div>
 							<div id="newstude" class="col-sm-12 ">
@@ -1938,9 +1938,8 @@ else{
 								case 9:
 								echo"<script>$('#emp3').parent().find('input:first').focus().width(250);</script>";
 $result = mysql_query("insert into log values('','".$username." accesses Ex Employee Search Panel','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
-
-							echo'
-								<div style="width:100%; background:#272727; padding:3px 0 1px 0"  id="headclose">
+		echo '<div class="vd_container" id="container">
+							<div class="vd_content clearfix" style="">
 								<h3 style="color:#ffdd17; margin-top:3px">EX-EMPLOYEE SEARCH PANEL
 								
 								<div id="saveclose" style="width:50px; height:30px;float:right;margin-right:10px;">
@@ -1998,7 +1997,7 @@ $emp=$_GET['param'];
 							echo"
 										<script>
 										$().customAlert();
-										alert('Success!', '<p>Delete Successful.</p>');
+										swal('Success!', 'Delete Successful.','success');
 										</script>";	
 							}
 							
@@ -2009,8 +2008,18 @@ $emp=$_GET['param'];
 								echo"<script>$('#emp3').parent().find('input:first').focus().width(250);</script>";
 									echo"<script>$('#user1').parent().find('input:first').focus().width(250);</script>";
 $result = mysql_query("insert into log values('','".$username." accesses Dashboard','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
-					echo'<div style="width:100%; background:#272727; padding:3px 0 1px 0"  id="headclose">
-								<h3 style="color:#ffdd17; margin-top:3px">DASHBOARD:'.strtoupper(getuser($username)).'
+					
+echo'<div class="vd_container" id="container">
+<div class="vd_content clearfix">
+';
+echo'<div class="vd_content-section clearfix">
+
+<div class="row" id="form-basic">
+<div class="col-md-12">
+  <div class="panel widget">
+	<div class="panel-heading vd_bg-grey">
+
+								<h3 style=" margin-top:3px">DASHBOARD:'.strtoupper(getuser($username)).'
 								
 								<div id="saveclose" style="width:50px; height:30px;float:right;margin-right:10px;">
 								<input type="button" value="Exit" id="submit"  style="padding:5px 5px; border-color:#fff; background:#f00; float:right; cursor:pointer;width:50px" class="in_field" onclick="hidenewstude();"/></div>
@@ -2020,17 +2029,19 @@ $result = mysql_query("insert into log values('','".$username." accesses Dashboa
 							<div class="cleaner" style="border-bottom:2px solid #75c5cf"></div>
 							
 							
-	 <ul class="nav nav-tabs">
-        <li><a href="#tasks" data-toggle="tab" style="outline:0">Tasks Manager</a></li>
-        <li  class="active"><a href="#events" data-toggle="tab" style="outline:0">Mails Manager  <img src="images/plus.png" style="width:20px; height:20px; float:right; cursor:pointer" onclick="addtopay()" title="Add New Message"></a></li>
-     	 <li><a href="#myinfo" data-toggle="tab" style="outline:0">My Info</a></li>
-     	 <li><a href="#mypay" data-toggle="tab" style="outline:0">My Payslips</a></li>
-     	  <li><a href="#mydeduct" data-toggle="tab" style="outline:0">Deductions/Contributions Summary</a></li>
-      </ul>
+							<div class="panel-body">
+							<ul class="nav nav-tabs">
+								<li><a href="#tasks" data-toggle="tab">Task Manager</a></li>
+								<li class="active"><a href="#events" data-toggle="tab">Mails Manager<img src="images/plus.png" style="width:20px; height:20px; float:right; cursor:pointer" onclick="addtopay()" title="Add New Message"></a></li>
+								<li><a href="#myinfo" data-toggle="tab">My info</a></li>
+								<li><a href="#mypay" data-toggle="tab">My payslips</a></li>
+								<li><a href="#mydeduct" data-toggle="tab">Deductions/Contributions Summary</a></li>
+							  </ul>
+							  <br/>
       <!-- Tab panes -->
-      <div class="tab-content">
+      <div class="tab-content mgbt-xs-20">
 
-       <div class="tab-pane fade" id="myinfo">';
+       <div class="tab-pane " id="myinfo">';
 
         $result =mysql_query("select * from users where name='".$username."'");		
 		$row=mysql_fetch_array($result);
@@ -2042,77 +2053,340 @@ $result = mysql_query("insert into log values('','".$username." accesses Dashboa
 
 			echo'<div style="float:left; width:100%;height:400px;overflow-y:auto ">
 			<ul style="list-style:none; width:40%; float:left; text-align:left">
-			<h style="font-size:15px; text-decoration:underline; color:#75c5cf">Personal Details</h>
-            <li class=""><strong>P.F No: </strong>'.stripslashes($row['emp']).'</li>
-			 <li class=""><strong>Names: </strong>'.stripslashes($row['fname']).' '.stripslashes($row['mname']).' '.stripslashes($row['lname']).'</li>
-             <li class=""><strong>D.O.B: </strong>'.stripslashes($row['dob']).'</li>
-			  <li class=""><strong>Gender: </strong>'.stripslashes($row['gender']).'</li>
-			   <li class=""><strong>Marital Status: </strong>'.stripslashes($row['marital']).'</li>
-              <li class=""><strong>Phone: </strong>'.stripslashes($row['phone']).'</li>
-			    <li class=""><strong>ID No: </strong>'.stripslashes($row['idno']).'</li>
-				  <li class=""><strong>Pin No: </strong>'.stripslashes($row['pinno']).'</li>
-              <li class=""><strong>Languages: </strong>'.stripslashes($row['languages']).'</li>
-       		 <li class=""><strong>Address: </strong>'.stripslashes($row['phyadd']).'</li>
-			  <li class=""><strong>Location: </strong>'.stripslashes($row['town']).'</li>
+			<div class="panel-heading vd_bg-grey">
+								<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+								Personal Details</h5>
+								</div>
+								
+								
+								<div class="panel-body">
+
+								<form class="form-horizontal" role="form">
+								           <div class="form-group">
+                        <label style="float:left" class="col-sm-4">P.F No:</label>
+                        <div class="col-sm-8 controls">
+                         <input type="text" id="emp" name="emp" class="in_field" value="'.$emp.'" style="border-color:#f00" disabled="disabled"/> 
+									</div>
+									</div>
+
+									<div class="form-group">
+									<label style="float:left" class="col-sm-4">Names: </label>
+                        <div class="col-sm-8 controls">
+                                <input type="text" id="fname" name="field" class="in_field"onkeyup="validatealp(\'fname\')" value="'.stripslashes($rowx['fname']).' '.stripslashes($row['mname']).' '.stripslashes($row['lname']).'"/>
+								</div>
+								</div>
+								
+								
+                                 
+									<div class="form-group">
+                        <label style="float:left" class="col-sm-4">D.O.B: </label>
+                        <div class="col-sm-8 controls">
+							  <input id="dob" name="dob" class="in_field" placeholder="" type="text" readonly="readonly" value="'.stripslashes($rowx['dob']).'">
+							   </div>
+							  </div>
+							  
+							   <div class="form-group">
+                        <label style="float:left" class="col-sm-4">Mar Status: </label>
+						<div class="col-sm-8 controls">
+						<input type="text" id="marital" name="field" class="in_field"onkeyup="validatealp(\'marital\')" value="'.stripslashes($rowx['marital']).'"/>
+						</div>
+								</div>
+								<br/>
+								
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Languages: </label>
+                        <div class="col-sm-8 controls">
+                                <input type="text" id="languages" name="field" class="in_field"onkeyup="validatealp(\'languages\')" value="'.stripslashes($rowx['languages']).'"/>
+								</div></div>
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Gender:</label>
+                        <div class="col-sm-8 controls">
+								 
+								
+								<div id="radio">;
+
+		<input  id="maleGender" name="gender" type="radio" checked="checked"  class="radio"/><label for="maleGender">Male</label>
+	
+							</div>
+								</div>
+								</div>
+			
+								   <div class="form-group">
+                        <label style="float:left" class="col-sm-4">ID No: </label>
+                        <div class="col-sm-8 controls">
+                                <input type="text" id="idno" name="field" class="in_field" onkeyup="validatenum(\'idno\')"  value="'.stripslashes($rowx['idno']).'"/>
+								</div>
+								</div>
+								
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Pin No: </label>
+                        <div class="col-sm-8 controls">
+                                <input type="text" id="pinno" name="field" class="in_field" /> 
+									</div>
+								</div>
+
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Languages: </label>
+                        <div class="col-sm-8 controls">
+                                <input type="text" id="languages" name="field" class="in_field" value="'.stripslashes($row['languages']).'" /> 
+									</div>
+								</div>
+
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Physical Address: </label>
+                        <div class="col-sm-8 controls">
+                                <input type="text" id="phyadd" name="field" class="in_field" value="'.stripslashes($row['phyadd']).'" /> 
+									</div>
+								</div>
+								
+								<div class="form-group">
+                        <label style="float:left" class="col-sm-4">Town: </label>
+                        <div class="col-sm-8 controls">
+                                <input type="text" id="town" name="field" class="in_field" value="'.stripslashes($row['town']).'" /> 
+									</div>
+								</div>
+
+								
+              
+     
              </ul>
 			 
 			  <ul style="list-style:none; width:40%; float:left; text-align:left">
-			<h style="font-size:15px; text-decoration:underline; color:#75c5cf">Employment Details</h>
-            <li class=""><strong>Salary: </strong>'.stripslashes($row['salary']).'</li>
-             <li class=""><strong>D.O.E: </strong>'.stripslashes($row['employdate']).'</li>
-			  <li class=""><strong>Emp Type: </strong>'.stripslashes($row['emptype']).'</li>';
-			  if(stripslashes($row['emptype'])=='CONTRACT'){
-				echo'<li class=""><strong>From: </strong>'.stripslashes($row['contractfrom']).'</li>
-			  <li class=""><strong>To: </strong>'.stripslashes($row['contractto']).'</li>';  
-			  }
-			  
-			   echo'<li class=""><strong>Branch: </strong>'.stripslashes($row['branch']).'</li>
-			   <li class=""><strong>Dept: </strong>'.stripslashes($row['dept']).'</li>
-              <li class=""><strong>Position: </strong>'.stripslashes($row['position']).'</li>
-              <li class=""><strong>Clearance Level: </strong>'.stripslashes($row['clearance']).'</li>
-			    <li class=""><strong>Job Desc: </strong>'.stripslashes($row['jobdesc']).'</li>
-			     <li class=""><strong>Leave Days Pending: </strong>'.stripslashes($row['leaveac']).'</li>';
-				 if(stripslashes($row['status'])=='0'){
-			echo'<li class=""><strong>Termination Date: </strong>'.stripslashes($row['terminationdate']).'</li>
-			  <li class=""><strong>Termination Reason: </strong>'.stripslashes($row['terminationreason']).'</li>';  
-			  }
-			  
+			  <div class="panel-heading vd_bg-grey">
+			  <h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+			  Employment Details</h5>
+			  </div>
+            <div class="form-group">
+						<label style="float:left" class="col-sm-4">Salary: <span style="color:#f00">*</span></label>
+						<div class="col-sm-8 controls">
+						<input id="salary" name="salary" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['salary']).'" >
+						</div>
+						   </div>
+<br/>
+
+						   <div class="form-group">
+						   <label style="float:left" class="col-sm-4">D.O.E: <span style="color:#f00">*</span></label>
+						<div class="col-sm-8 controls"><input id="salary" name="salary" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['employdate']).'" >
+						</div>
+						</div>
+				<br/><br/>
+
 				
-            echo' </ul>
+				<div class="form-group">
+				<label style="float:left" class="col-sm-4">Employment Type: <span style="color:#f00">*</span></label>
+			 <div class="col-sm-8 controls"><input id="emptype" name="emptype" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['emptype']).'" >
+			 </div>
+			 </div>
+	 <br/><br/>
+
+	 
+				
+	 <div class="form-group">
+	 <label style="float:left" class="col-sm-4">From: <span style="color:#f00">*</span></label>
+  <div class="col-sm-8 controls"><input id="contractfrom" name="contractfrom" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['contractfrom']).'" >
+  </div>
+  </div>
+<br/><br/>
+	 
+				
+		
+				
+<div class="form-group">
+<label style="float:left" class="col-sm-4">To: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="contractto" name="contractto" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['contractto']).'" >
+</div>
+</div>
+<br/><br/>
+				
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Branch: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="branch" name="branch" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['branch']).'" >
+</div>
+</div>
+<br/><br/>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Department: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="dept" name="dept" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['dept']).'" >
+</div>
+</div>
+<br/><br/>
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Position: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="position" name="position" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['position']).'" >
+</div>
+</div>
+<br/><br/>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Clearance: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="clearance" name="clearance" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['clearance']).'" >
+</div>
+</div>
+<br/><br/>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Job Description: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="jobdesc" name="jobdesc" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['jobdesc']).'" >
+</div>
+</div>
+<br/>
+
+
+<br/><br/>
+			  </ul>
 			
 			<div class="cleaner" style="border-bottom:2px solid #75c5cf"></div>
 
 
 			  <ul style="list-style:none; width:40%; float:left; text-align:left">
-			<h style="font-size:15px; text-decoration:underline; color:#75c5cf">Medical Details</h>
-            <li class=""><strong>Blood Group: </strong>'.stripslashes($row['bgroup']).'</li>
-             <li class=""><strong>Known Problems: </strong>'.stripslashes($row['alergy']).'</li>
-			   <div class="cleaner_h10"></div>  
-			 <h style="font-size:15px; text-decoration:underline; color:#75c5cf">Emergency Contact Details</h>
-            <li class=""><strong>Names: </strong>'.stripslashes($row['ename']).'</li>
-             <li class=""><strong>Phone: </strong>'.stripslashes($row['ephone']).'</li>
-			 <li class=""><strong>Postal Address: </strong>'.stripslashes($row['epostal']).'</li>
+			  <div class="panel-heading vd_bg-grey">
+			  <h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+			  Medical Details</h5>
+			  </div>
+
+			
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Blood Group: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="bgroup" name="bgroup" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['bgroup']).'" >
+</div>
+</div>
+<br/>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Known Problems: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="alergy" name="bgroup" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['alergy']).'" >
+</div>
+</div>
+<br/>
+</ul>
+
+<ul style="list-style:none; width:40%; float:left; text-align:left">
+<div class="panel-heading vd_bg-grey">
+<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+Emergency Contact Details</h5>
+</div>
+
+
+
+			
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Names: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="ename" name="ename" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['ename']).'" >
+</div>
+</div>
+<br/>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Phone: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="ephone" name="ephone" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['ephone']).'" >
+</div>
+</div>
+<br/>
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">Postal Address: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="epostal" name="epostal" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['epostal']).'" >
+</div>
+</div>
+<br/> 
+
+</ul>
+<ul style="list-style:none; width:40%; float:left; text-align:left">
+   
 			  <div class="cleaner_h10"></div>  
-			 <h style="font-size:15px; text-decoration:underline; color:#75c5cf">Payslip Details</h>
-            <li class=""><strong>Bank: </strong>'.stripslashes($row['bname']).'</li>
-             <li class=""><strong>A/C No: </strong>'.stripslashes($row['acno']).'</li>
-			 <li class=""><strong>NSSF No: </strong>'.stripslashes($row['nssf']).'</li>
-			 <li class=""><strong>NHIF No: </strong>'.stripslashes($row['nhif']).'</li>
+			  
+			  <div class="panel-heading vd_bg-grey">
+			  <h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+			  Payslip details:</h5>
+			  </div>
+		   
+			
+			 <div class="form-group">
+			 <label style="float:left" class="col-sm-4">Bank: <span style="color:#f00">*</span></label>
+			 <div class="col-sm-8 controls"><input id="bank" name="bank" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['bname']).'" >
+			 </div>
+			 </div>
+			 <br/> 
+		
+			 <div class="form-group">
+<label style="float:left" class="col-sm-4">A/C No: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="acno" name="acno" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['acno']).'" >
+</div>
+</div>
+<br/> 
+
+<div class="form-group">
+<label style="float:left" class="col-sm-4">NSSF No: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="nssf" name="epostal" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['nssf']).'" >
+</div>
+</div>
+<br/> 
+			 
+<div class="form-group">
+<label style="float:left" class="col-sm-4">N.H.I.F No: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="nhif" name="nhif" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['nhif']).'" >
+</div>
+</div>
+<br/> 
+			 
 			 </ul>
 			 
+			
 			 <ul style="list-style:none; width:40%; float:left; text-align:left">
-			<h style="font-size:15px; text-decoration:underline; color:#75c5cf">Education Details</h>
-            <li class="">'.stripslashes($row['education']).'</li>
+			  <div class="panel-heading vd_bg-grey">
+			  <h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+			  Education Details</h5>
+			  </div>
+			  <div class="form-group">
+<label style="float:left" class="col-sm-4">Education: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="education" name="education" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['education']).'" >
+</div>
+</div>
+		   </ul>
+		  
+		   <ul style="list-style:none; width:40%; float:left; text-align:left">
 			<div class="cleaner_h10"></div>  
-			<h style="font-size:15px; text-decoration:underline; color:#75c5cf">Experience Details</h>
-            <li class="">'.stripslashes($row['experience']).'</li>
-			<div class="cleaner_h10"></div>  
-			<h style="font-size:15px; text-decoration:underline; color:#75c5cf">Skills</h>
-            <li class="">'.stripslashes($row['skills']).'</li>
-			<div class="cleaner_h10"></div>  
-			<h style="font-size:15px; text-decoration:underline; color:#75c5cf">Hobbies</h>
-            <li class="">'.stripslashes($row['hobbies']).'</li>
-			 </ul>
+			<div class="panel-heading vd_bg-grey">
+			<h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+			Experience Details</h5>
+			</div>
+
+			<div class="form-group">
+			<label style="float:left" class="col-sm-4">Experience: <span style="color:#f00">*</span></label>
+			<div class="col-sm-8 controls"><input id="experience" name="experience" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['experience']).'" >
+			</div>
+			</div>
+		 </ul>
+		 
+		 
+		 <ul style="list-style:none; width:40%; float:left; text-align:left">
+		 <div class="panel-heading vd_bg-grey">
+		 <h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+		 SKills:</h5>
+		 </div>
+		 <div class="form-group">
+<label style="float:left" class="col-sm-4">Skills: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="skills" name="skills" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['skills']).'" >
+</div>
+</div>
+	  </ul>
+	 
+	
+
+		 
+		 <ul style="list-style:none; width:40%; float:left; text-align:left">
+		 <div class="panel-heading vd_bg-grey">
+		 <h5 class="panel-title"><span class="menu-icon"> <i class="fa fa-th-list"></i> </span>
+		Hobbies:</h5>
+		 </div>
+		 <div class="form-group">
+<label style="float:left" class="col-sm-4">Hobbies: <span style="color:#f00">*</span></label>
+<div class="col-sm-8 controls"><input id="hobbies" name="education" class="in_field"  type="text" readonly="readonly"   value="'.stripslashes($row['hobbies']).'" >
+</div>
+</div>
+	  </ul>
+			 
 			 
 	</div>
 
@@ -2159,7 +2433,7 @@ $result = mysql_query("insert into log values('','".$username." accesses Dashboa
 		
 	 </div>
 
-	  <div class="tab-pane fade" id="mypay">
+	  <div class="tab-pane" id="mypay">
 			 
 			 <div id="loading" ></div>
 			<div id="display" style="height:90%;"></div>
@@ -2169,10 +2443,13 @@ $result = mysql_query("insert into log values('','".$username." accesses Dashboa
 		
 	 echo'</div>
 
-	 <div class="tab-pane fade" id="mydeduct">
+	 <div class="tab-pane " id="mydeduct">
 
 	
 		<a class="labels" style="margin-left:20px">Category:</a>
+
+		<br/>
+		<br/>
 				<div class="ui_widget"  style="margin-left:10px;float:left; width:270px">
 				<select id="category" style="width:260px; margin-left:10px;">
 				<option value="">Select one...</option>
@@ -2203,6 +2480,9 @@ $result = mysql_query("insert into log values('','".$username." accesses Dashboa
 
 
 				<div class="cleaner_h5"></div>
+
+				<br/>
+				<br/>
 				<input type="button" value="Submit" style="float:left; margin-left:150px; 
 									cursor:pointer; width:80px" class="select" onclick="enterempdeds2(\''.$emp.'\');"/>
 						<div class="cleaner_h5"></div>	 
@@ -2948,181 +3228,195 @@ $result = mysql_query("insert into log values('','".$username." accesses Leave C
 							
 							break;
 							
-					case 20:
-					echo"<script>$('#emp3').parent().find('input:first').focus().width(250);</script>";
-$result = mysql_query("insert into log values('','".$username." accesses Take Attendace','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
-					echo'<div style="width:100%; background:#272727; padding:3px 0 1px 0"  id="headclose">
-								<h3 style="color:#ffdd17; margin-top:3px">EMPLOYEE ATTENDANCE
+					      
+							
+
+							case 20:
+								echo"<script>$('#emp3').parent().find('input:first').focus().width(250);</script>";
+					  $result = mysql_query("insert into log values('','".$username." accesses Take Attendace','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+					  echo'<div class="vd_container" id="container">
+					  <div class="vd_content clearfix">
+			  ';
+		
+				  echo'<div class="vd_content-section clearfix">
+				  <div class="row" id="form-basic">
+					<div class="col-md-6">
 								
-								<div id="saveclose" style="width:50px; height:30px;float:right;margin-right:10px;">
-								<input type="button" value="Exit" id="submit"  style="padding:5px 5px; border-color:#fff; background:#f00; float:right; cursor:pointer;width:50px" class="in_field" onclick="hidenewstude();"/>
-								</div>
-
-								<div id="saveclose" style="width:80px; height:30px;float:right;margin-right:10px;">
-								<input type="button" value="Sync Now" id="submit"  style="padding:5px 5px; border-color:#fff; background:#ff3; float:right; cursor:pointer;width:80px" class="in_field" onclick="syncattendance();"/>
-								</div>
-
-								</h3>
-								</div>
-
-
-							<div id="newstude" class="col-sm-12 " style="padding:1%">
-							<div class="cleaner" style="border-bottom:2px solid #75c5cf"></div>
-							
-
-			 <div id="title">
-			 <div class="figure1" id="tdate" style="float:left;margin-left:0px;width:100%; border-bottom:1px solid #75c5cf">
-			<b style="float:left;margin-top:5px">Date: </b>
-			 <input id="datepicker3" name="doe" class="in_field" value="'.date('d/m/Y').'"  type="text" readonly="readonly" style="width:20%;float:left; margin-left:10px"> 
-			 	   <img src="images/zoom.png" style="width:30px; height:30px; float:left; margin-left:10px; cursor:pointer" onclick="showattendance()" title="View Attendance">
-				
-			 
-			</div>
-			 </div>
-			 
-         
-		 			<div id="title">
-									<div id="figure1" style="margin-left:0px;width:20%">PF No</div>
-									<div id="figure1" style="margin-left:0px;width:50%">Name</div>
-									<div id="figure1" style="width:30%">Action</div>
-					</div>
-					<div id="display">';
-					$result =mysql_query("select * from attendance where  month='".date('m_Y')."' order by pfno");
-					$num_results = mysql_num_rows($result);	
-					for ($i=0; $i <$num_results; $i++) {
-									$row=mysql_fetch_array($result);
-									if($i%2==0){
-	echo'<div class="normal1"  style="min-height:20px; border-left:1.5px solid #333; cursor:pointer">';
-	}else{
-		echo'<div  class="normal2" style="min-height:20px;  border-left:1.5px solid #333;cursor:pointer">';
-	}	
+								<h3 style="color:#ffdd17; margin-top:3px">EMPLOYEE ATTENDANCE
+									  
+									  <div id="saveclose" style="width:50px; height:30px;float:right;margin-right:10px;">
+									  <input type="button" value="Exit" id="submit"  style="padding:5px 5px; border-color:#fff; background:#f00; float:right; cursor:pointer;width:50px" class="in_field" onclick="hidenewstude();"/>
+									  </div>
+					  
+									  <div id="saveclose" style="width:80px; height:30px;float:right;margin-right:10px;">
+									  <input type="button" value="Sync Now" id="submit"  style="padding:5px 5px; border-color:#fff; background:#ff3; float:right; cursor:pointer;width:80px" class="in_field" onclick="syncattendance();"/>
+									  </div>
+					  
+									  </h3>
+									  </div>
+					  
+					  
+									<div id="newstude" class="col-sm-12 " style="padding:1%">
+									<div class="cleaner" style="border-bottom:2px solid #75c5cf"></div>
 									
-									echo"
-									<div id=\"figure2\" style=\"width:20%\" >".stripslashes($row['pfno'])."</div>
-									<div id=\"figure2\" style=\"width:50%\" >".stripslashes($row['names'])."</div>";
-									$empno=stripslashes($row['pfno']);
-									$code=stripslashes($row['id']);
-									$x=date('d').'c';
-									$status=stripslashes($row[$x]);
-									if($status=='0'){
-									echo"<div class=\"figure2\" style=\"width:30%;padding:3px; background:#f00\" id=\"back".stripslashes($row['id'])."\" >
-									<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
-									<option value=\"0\"  disabled=\"disabled\">Select</option>
-									<option selected=\"selected\" value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
-									<option value=\"1\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
-									<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
-									<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
-									<option  value=\"4\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
-									<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
-									</select></div>";	
-									}
-									else if($status=='1'){
-									echo"<div class=\"figure2\" style=\"width:30%;padding:3px; background:#0f6\" id=\"back".stripslashes($row['id'])."\" >
-									<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
-									<option value=\"0\" disabled=\"disabled\">Select</option>
-									<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
-									<option value=\"1\"  selected=\"selected\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
-									<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
-									<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
-									<option  value=\"4\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
-									<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
-									</select></div>";	
-									}
-									
-									else if($status=='2'){
-									echo"<div class=\"figure2\" style=\"width:30%;padding:3px; background:#0ff\" id=\"back".stripslashes($row['id'])."\" >
-									<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
-									<option value=\"0\" disabled=\"disabled\">Select</option>
-									<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
-									<option value=\"1\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
-									<option  value=\"2\"  selected=\"selected\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
-									<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
-									<option  value=\"4\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
-									<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
-									</select></div>";	
-									}
-									
-									else if($status=='3'){
-									echo"<div class=\"figure2\" style=\"width:30%;padding:3px; background:#ff3\" id=\"back".stripslashes($row['id'])."\" >
-									<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
-									<option value=\"0\" disabled=\"disabled\">Select</option>
-									<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
-									<option value=\"1\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
-									<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
-									<option  value=\"3\"  selected=\"selected\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
-									<option  value=\"4\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
-									<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
-									</select></div>";	
-									}
-
-									else if($status=='4'){
-									echo"<div class=\"figure2\" style=\"width:30%;padding:3px; background:#ff3\" id=\"back".stripslashes($row['id'])."\" >
-									<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
-									<option value=\"0\" disabled=\"disabled\">Select</option>
-									<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
-									<option value=\"1\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
-									<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
-									<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
-									<option  value=\"4\"  selected=\"selected\"   onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
-									<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
-									</select></div>";	
-									}
-
-									else if($status=='5'){
-									echo"<div class=\"figure2\" style=\"width:30%;padding:3px; background:#ff3\" id=\"back".stripslashes($row['id'])."\" >
-									<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
-									<option value=\"0\" disabled=\"disabled\">Select</option>
-									<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
-									<option value=\"1\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
-									<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
-									<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
-									<option  value=\"4\"   onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
-									<option  value=\"5\" selected=\"selected\"   onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
-									</select></div>";	
-									}
-									
-									
-									
-									else {
-									echo"<div class=\"figure2\" style=\"width:30%;padding:3px;\" id=\"back".stripslashes($row['id'])."\" >
-									<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
-									<option value=\"0\"  selected=\"selected\" disabled=\"disabled\">Select</option>
-									<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
-									<option value=\"1\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
-									<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
-									<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
-									<option  value=\"4\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
-									<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
-									</select></div>";	
-									}
-									
-									echo"
-									</div>
-									<div class=\"cleaner\"></div>";
-
-
-									//check if employee on leave
-
-
-									$resultx =mysql_query("select * from leaves where endstamp>='".date('Ymd')."' and commstamp<='".date('Ymd')."' and emp='".$empno."' and status=2");
-									$num_resultsx = mysql_num_rows($resultx);	
-									if($num_resultsx>0){
-
-										echo "<script>
-										$('#back".$code."').css({'background' : '#0ff'});
-										$('#action".$code."').val(2);</script>";
+					  
+							 <div id="title">
+							 <div class="figure1" id="tdate" style="float:left;margin-left:0px;width:100%; border-bottom:1px solid #75c5cf">
+							<b style="float:left;margin-top:5px">Date: </b>
+							 <input id="datepicker3" name="doe" class="in_field" value="'.date('d/m/Y').'"  type="text" readonly="readonly" style="width:20%;float:left; margin-left:10px"> 
+								 <img src="images/zoom.png" style="width:30px; height:30px; float:left; margin-left:10px; cursor:pointer" onclick="showattendance()" title="View Attendance">
+							  
+							 
+							</div>
+							 </div>
+							 
+							   <table>
+								 
+								<tr>
+										<th id="figure1" >PF No</th>
+										<th id="figure1" >Name</th>
+										<th id="figure1" >Action</th>
+								</tr>
+							   
+					  
+					  
+								<div id="display">';
+								$result =mysql_query("select * from attendance where  month='".date('m_Y')."' order by pfno");
+								$num_results = mysql_num_rows($result); 
+								for ($i=0; $i <$num_results; $i++) {
+										$row=mysql_fetch_array($result);
+										if($i%2==0){
+						echo'<div class="normal1"  style="min-height:20px; border-left:1.5px solid #333; cursor:pointer">';
+						}else{
+						  echo'<div  class="normal2" style="min-height:20px;  border-left:1.5px solid #333;cursor:pointer">';
+						} 
 										
-									}
-					}
-		 
-		 
-       echo'<div class="cleaner_h60"></div></div> 
-	  </div>';
-	 
-	
+										echo"
+										<tr><td><div id=\"figure2\" style=\"\" >".stripslashes($row['pfno'])."</div></td>
+										<td><div id=\"figure2\" style=\"\" >".stripslashes($row['names'])."</div></td>";
+										$empno=stripslashes($row['pfno']);
+										$code=stripslashes($row['id']);
+										$x=date('d').'c';
+										$status=stripslashes($row[$x]);
+										if($status=='0'){
+										echo"<td><div class=\"figure2\" style=\";padding:3px; background:#f00\" id=\"back".stripslashes($row['id'])."\" >
+										<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
+										<option value=\"0\"  disabled=\"disabled\">Select</option>
+										<option selected=\"selected\" value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
+										<option value=\"1\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
+										<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
+										<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
+										<option  value=\"4\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
+										<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
+										</select></div></td>"; 
+										}
+										else if($status=='1'){
+										echo"<td><div class=\"figure2\" style=\"padding:3px; background:#0f6\" id=\"back".stripslashes($row['id'])."\" >
+										<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
+										<option value=\"0\" disabled=\"disabled\">Select</option>
+										<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
+										<option value=\"1\"  selected=\"selected\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
+										<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
+										<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
+										<option  value=\"4\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
+										<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
+										</select></div></td>"; 
+										}
+										
+										else if($status=='2'){
+										echo"<td><div class=\"figure2\" style=\"padding:3px; background:#0ff\" id=\"back".stripslashes($row['id'])."\" >
+										<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
+										<option value=\"0\" disabled=\"disabled\">Select</option>
+										<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
+										<option value=\"1\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
+										<option  value=\"2\"  selected=\"selected\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
+										<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
+										<option  value=\"4\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
+										<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
+										</select></div></td>"; 
+										}
+										
+										else if($status=='3'){
+										echo"<td><div class=\"figure2\" style=\"padding:3px; background:#ff3\" id=\"back".stripslashes($row['id'])."\" >
+										<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
+										<option value=\"0\" disabled=\"disabled\">Select</option>
+										<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
+										<option value=\"1\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
+										<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
+										<option  value=\"3\"  selected=\"selected\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
+										<option  value=\"4\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
+										<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
+										</select></div></td>"; 
+										}
+					  
+										else if($status=='4'){
+										echo"<td><div class=\"figure2\" style=\"padding:3px; background:#ff3\" id=\"back".stripslashes($row['id'])."\" >
+										<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
+										<option value=\"0\" disabled=\"disabled\">Select</option>
+										<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
+										<option value=\"1\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
+										<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
+										<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
+										<option  value=\"4\"  selected=\"selected\"   onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
+										<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
+										</select></div></td>"; 
+										}
+					  
+										else if($status=='5'){
+										echo"<td><div class=\"figure2\" style=\"padding:3px; background:#ff3\" id=\"back".stripslashes($row['id'])."\" >
+										<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
+										<option value=\"0\" disabled=\"disabled\">Select</option>
+										<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
+										<option value=\"1\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
+										<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
+										<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
+										<option  value=\"4\"   onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
+										<option  value=\"5\" selected=\"selected\"   onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
+										</select></div></td>"; 
+										}
+										
+										
+										
+										else {
+										echo"<td><div class=\"figure2\" style=\"padding:3px;\" id=\"back".stripslashes($row['id'])."\" >
+										<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
+										<option value=\"0\"  selected=\"selected\" disabled=\"disabled\">Select</option>
+										<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
+										<option value=\"1\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
+										<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
+										<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
+										<option  value=\"4\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
+										<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
+										</select></div></td>"; 
+										}
+										
+										echo"
+										</div>
+										<div class=\"cleaner\"></div></tr>";
+					  
+					  
+										//check if employee on leave
+					  
+					  
+										$resultx =mysql_query("select * from leaves where endstamp>='".date('Ymd')."' and commstamp<='".date('Ymd')."' and emp='".$empno."' and status=2");
+										$num_resultsx = mysql_num_rows($resultx); 
+										if($num_resultsx>0){
+					  
+										  echo "<script>
+										  $('#back".$code."').css({'background' : '#0ff'});
+										  $('#action".$code."').val(2);</script>";
+										  
+										}
+								}
+						   
+						   
+							 echo'</table></div> </div></div>
+						  </div>';
+						  
 						
-							break;
-							
+						
+								  
+									break;
 					case 21:
 					$mon=$_GET['mon'];$date=$_GET['tdate'];	
 					$tstamp=substr($mon,3,4).substr($mon,0,2).$date;
@@ -5457,7 +5751,761 @@ echo'<img src="images/delete.png" style="width:20px; height:20px; float:right; b
 
 
 
+							
+     case 100:
+		$a=$_GET['a'];
+   
+		echo"<script>$('#emp1').parent().find('input:first').focus().width(250);</script>";	
+	   echo '<div class="vd_container" id="container">
+		   <div class="vd_content clearfix" style="">
+   
+				   <div style="width:100%;padding:20px">
+				   <div class="panel-heading vd_bg-grey">
+					   <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Edit Member Info</h3>
+					 </div>
+					 <input type="hidden" id="ser" name="ser"  value="'.$a.'"/>
+					 <select id="emp1">
+					 <option value="">Select one...</option>';
+					 $resulta =mysql_query("select * from employee where status=1 and ".$_SESSION['clearance']." order by fname");
+					 $num_resultsa = mysql_num_rows($resulta);
+					 for ($i=0; $i <$num_resultsa; $i++) {
+						 $rowa=mysql_fetch_array($resulta);
+						 echo'<option value="'.stripslashes($rowa['emp']).'">'.stripslashes($rowa['fname']).' '.stripslashes($rowa['mname']).' '.stripslashes($rowa['lname']).'-'.stripslashes($rowa['emp']).'</option>';
+					 }
+					 echo'
+				 </select>
+						<div class="cleaner_h10"></div>
+						<div class="col-sm-7">
+						 <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+					   </div>
+					   </div>
+		   <!-- .vd_content --> 
+		 </div>
+		 <!-- .vd_container -->';
+		 echo "<script>
+			   $('#emp1').select2();
+			   $('#emp1').on('select2:select', function (e) {
+				var param = $('#emp1').val();
+			   var str = $('#item5').val();
+			   var parts=param.split('-',3);
+			   param=parts[0];
+			   $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+			   $.ajax({
+			   url:'bridge.php',
+			   data:{id:5,param:param},
+			   success:function(data){
+			   $('#mainp').html(data);
+			   }
+			   });
+   
+   
+			 });
+			  </script>";
+   
+	   break;
 
+
+	   case 101:
+		$a=$_GET['a'];
+		echo"<script>$('#emp1').parent().find('input:first').focus().width(250);</script>";	
+		
+	
+	
+		echo '<div class="vd_container" id="container">
+			<div class="vd_content clearfix" style="">
+		 
+					<div style="width:100%;padding:20px">
+					<div class="panel-heading vd_bg-grey">
+						<h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-search"></i> </span>Employee File</h3>
+					  </div>
+					  <input type="hidden" id="ser" name="ser"  value="'.$a.'"/>
+
+					  <select id="intcombo"><option value="" selected>Select One...</option> ';
+					  $resulta =mysql_query("select * from employee where status=1 and ".$_SESSION['clearance']." order by fname");
+					   $num_resultsa = mysql_num_rows($resulta);
+						 for ($i=0; $i <$num_resultsa; $i++) {
+							 $rowa=mysql_fetch_array($resulta);
+							 $code=stripslashes($row['id']);
+							 echo '<option value="'.stripslashes($rowa['emp']).'">'.stripslashes($row['fname']).'-'.stripslashes($row['mname']).'-'.stripslashes($row['lname']).'-'.stripslashes($row['emp']).'</option>';
+						   }
+					  echo'</select>
+						 <div class="cleaner_h10"></div>
+						 <div class="col-sm-7">
+						  <button class="btn vd_btn vd_bg-red" type="button" onclick="hidecont()">Cancel</button>
+						</div>
+						</div>
+			<!-- .vd_content --> 
+		  </div>
+		  <!-- .vd_container -->';
+		  echo "<script>
+				$('#intcombo').select2();
+				$('#intcombo').on('select2:select', function (e) {
+			  var param = $('#intcombo').val();
+			  var str = $('#item5').val();
+			  var parts=param.split('-',3);
+			  param=parts[0];
+			  $('#mainp').html('<img id=\"img-spinner\" src=\"img/spin.gif\" style=\"position:absolute; width:30px;top:25%; left:60%\" alt=\"Loading\"/>');
+			  $.ajax({
+			  url:'bridge.php',
+			  data:{id:7,param:param},
+			  success:function(data){
+			  $('#mainp').html(data);
+				}
+				});
+	
+	
+			  });
+			   </script>";
+	
+		break;
+	
+		case 102:
+			$result = mysql_query("insert into log values('','".$username." accesses Employee Chart Panel.Registration No:".$_GET['emp']."','".$fname."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");	
+
+							$result =mysql_query("select * from employee where emp='".$param."'");		
+							$row=mysql_fetch_array($result);
+			 echo '<div class="vd_container" id="container">
+				 <div class="vd_content clearfix" style="">
+			
+						 <div class="vd_content-section clearfix">
+					 <div class="row" id="form-basic">
+					   <div class="col-md-12">
+						 <div class="panel widget">
+						   <div class="panel-heading vd_bg-grey">
+							 <h3 class="panel-title"> <span class="menu-icon"> <i class="fa fa-th-list"></i> </span> Member File-'.stripslashes($rowx['emp']).'-['.stripslashes($rowx['fname']).'-['.stripslashes($rowx['mname']).'] </h3>
+						   </div>
+						  <div class="panel-body">
+						   <ul class="nav nav-tabs">
+							   <li class="active"><a href="#tab1" data-toggle="tab">Personal Information</a></li>
+							   <li><a href="#tab2" data-toggle="tab">Employment Details</a></li>
+							   <li><a href="#tab3" data-toggle="tab">Other Details</a></li>
+							   <li><a href="#tab5" data-toggle="tab">Correspondence</a></li>
+							   <li><a href="#tab4" data-toggle="tab">Upload Documents</a></li>
+							 </ul>     
+							 <br/>               
+							 <div class="tab-content mgbt-xs-20">
+							   <div class="tab-pane active" id="tab1"> 
+							 <div class="col-md-6">
+							   <form class="form-horizontal" action="#" role="form">
+		 
+							   <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Personal details</label>
+								 
+							   </div>
+		 
+		 
+		 
+							  <form class="form-horizontal" action="#" role="form">
+							   <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Name<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="name" value="'.stripslashes($row['fname']).' '.stripslashes($row['mname']).' '.stripslashes($row['lname']).'" disabled>
+								 </div>
+							   </div>
+		 
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">DOB<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="dob" value="'.stripslashes($row['dob']).'" disabled>
+								 </div>
+							   </div>
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">Gender<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="gender" value="'.stripslashes($row['gender']).'" disabled>
+								 </div>
+							   </div>
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">Marital status<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="marital" value="'.stripslashes($row['marital']).'" disabled>
+								 </div>
+							   </div>
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">Phone<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="phone" value="'.stripslashes($row['phone']).'" disabled>
+								 </div>
+							   </div>
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">Id No:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="idno" value="'.stripslashes($row['idno']).'" disabled>
+								 </div>
+							   </div>
+		 
+		 
+							   <div class="form-group">
+								 <label style="float:left" class="col-sm-4">KRA Pin No:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="pinno" value="'.stripslashes($row['pinno']).'" disabled>
+								 </div>
+							   </div>
+		 
+		 
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">Languages:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								  <input type="text" id="languages" value="'.stripslashes($row['languages']).'" disabled>
+								   </div>
+								 </div>
+								
+								 <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Physical address:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								  <input type="text" id="phyadd" value="'.stripslashes($row['phyadd']).'" disabled>
+								   </div>
+								 </div>
+		 
+								 <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Town:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								 <input type="text" id="town" value="'.stripslashes($row['town']).'" disabled>
+								  </div>
+								 </div>
+		 
+		 
+							   
+							   
+		 
+		 
+							 </form>
+							  </div>
+		 
+							 	 
+		 
+							   </div><!--end tab-->
+		 
+		 
+		 
+							   <div class="tab-pane" id="tab2">
+		 
+							   <div class="col-md-6">
+							   <form class="form-horizontal" action="#" role="form">
+		 
+							   <div class="form-group">
+							   <label style="float:left" class="col-sm-4">Employment details</label>
+							   
+							 </div>
+		 
+		 
+		 
+							  <form class="form-horizontal" action="#" role="form">
+							   <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Salary:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="salary" value="'.stripslashes($row['salary']).'" disabled>
+								 </div>
+							   </div>
+		 
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">Employment date:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="dob" value="'.stripslashes($row['employdate']).'" disabled>
+								 </div>
+							   </div>
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">Employment Type:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="emptype" value="'.stripslashes($row['emptype']).'" disabled>
+								 </div>
+							   </div>
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">From:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="contractfrom" value="'.stripslashes($row['contractfrom']).'" disabled>
+								 </div>
+							   </div>
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">To:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="contractto value="'.stripslashes($row['contractto']).'" disabled>
+								 </div>
+							   </div>
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">Employment branch:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="branch" value="'.stripslashes($row['branch']).'" disabled>
+								 </div>
+							   </div>
+		 
+		 
+							   <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Employment department:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="dept" value="'.stripslashes($row['dept']).'" disabled>
+								 </div>
+							   </div>
+		 
+		 
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">Position:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								  <input type="text" id="position" value="'.stripslashes($row['position']).'" disabled>
+								   </div>
+								 </div>
+								
+								 <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Clearance Level:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								  <input type="text" id="clearance" value="'.stripslashes($row['clearance']).'" disabled>
+								   </div>
+								 </div>
+		 
+								 <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Job Description:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								  <input type="text" id="jobdesc" value="'.stripslashes($row['jobdesc']).'" disabled>
+								   </div>
+								 </div>
+								 <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Leave Days of Pending:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								  <input type="text" id="leaveac" value="'.stripslashes($row['leaveac']).'" disabled>
+								   </div>
+								 </div>
+								 <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Termination Date:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								  <input type="text" id="terminationdate" value="'.stripslashes($row['terminationdate']).'" disabled>
+								   </div>
+								 </div>
+								 <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Termination Reason:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								  <input type="text" id="terminationreason" value="'.stripslashes($row['terminationreason']).'" disabled>
+								   </div>
+								 </div>
+		 
+		 
+							   
+							   
+		 
+		 
+							 </form>
+							  </div>
+		 
+		 
+		 
+								</div>
+							   <div class="tab-pane" id="tab3"> 
+		 
+							   <div class="col-md-6">
+							   <form class="form-horizontal" action="#" role="form">
+		 
+							   <div class="form-group">
+							   <label style="float:left" class="col-sm-4">Medical details</label>
+							   
+							 </div>
+		 
+		 
+		 
+							  <form class="form-horizontal" action="#" role="form">
+							   <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Blood Group:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="bgroup" value="'.stripslashes($row['bgroup']).'" disabled>
+								 </div>
+							   </div>
+		 
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">Known Problems:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="alergy" value="'.stripslashes($row['alergy']).'" disabled>
+								 </div>
+							   </div>
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">Emergency Contact Details:<span style="color:#f00">*</span></label>
+								 
+							   </div>
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">Names:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="ename" value="'.stripslashes($row['ename']).'" disabled>
+								 </div>
+							   </div>
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">Phone:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="ephone" value="'.stripslashes($row['ephone']).'" disabled>
+								 </div>
+							   </div>
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">Postal Address:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								   <input type="text" id="epostal" value="'.stripslashes($row['epostal']).'" disabled>
+								 </div>
+							   </div>
+		 
+		 
+							   <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Payslip Details:<span style="color:#f00">*</span></label>
+								
+							   </div>
+		 
+		 
+		 
+								<div class="form-group">
+								 <label style="float:left" class="col-sm-4">Bank:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								  <input type="text" id="bname" value="'.stripslashes($row['bname']).'" disabled>
+								   </div>
+								 </div>
+								
+								 <div class="form-group">
+								 <label style="float:left" class="col-sm-4">A/C No:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								  <input type="text" id="acno" value="'.stripslashes($row['acno']).'" disabled>
+								   </div>
+								 </div>
+		 
+								 <div class="form-group">
+								 <label style="float:left" class="col-sm-4">NSSF:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								  <input type="text" id="nssf" value="'.stripslashes($row['nssf']).'" disabled>
+								   </div>
+								 </div>
+								 <div class="form-group">
+								 <label style="float:left" class="col-sm-4">NHIF:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								  <input type="text" id="nhif" value="'.stripslashes($row['nhif']).'" disabled>
+								   </div>
+								 </div>
+								 <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Education Details:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								  <input type="text" id="education" value="'.stripslashes($row['education']).'" disabled>
+								   </div>
+								 </div>
+								 <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Experience Details:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								  <input type="text" id="experience" value="'.stripslashes($row['experience']).'" disabled>
+								   </div>
+								 </div>
+								 <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Skills:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								  <input type="text" id="skills" value="'.stripslashes($row['skills']).'" disabled>
+								   </div>
+								 </div>
+								 <div class="form-group">
+								 <label style="float:left" class="col-sm-4">Hobbies:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-8 controls">
+								  <input type="text" id="hobbies" value="'.stripslashes($row['hobbies']).'" disabled>
+								   </div>
+								 </div>
+		 
+		 
+							   
+							   
+		 
+		 
+							 </form>
+							  </div>
+		 
+							   </div>
+		 
+							   
+							   <div class="tab-pane" id="tab4"> 
+								  <div class="col-md-6">
+								 <form method="post" action="upload.php" enctype="multipart/form-data" target="leiframe">
+								 <div class="cleaner"></div> 
+								 <div class="form-group">
+								 <label style="float:left" class="col-sm-3">Name:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-9 controls">
+								   <input type="text" id="fname"  name="fname"  required>
+								 </div>
+								 </div>
+								  <div class="cleaner_h5"></div>
+								 <div class="form-group">
+								 <label style="float:left" class="col-sm-3">Type:<span style="color:#f00">*</span></label>
+								 <div class="col-sm-9 controls">
+								   <select style="padding:5px" name="type" id="doctype">
+									 <option value="" selected>Select One...</option>
+									  <option value="Certificate of Incorporation">Certificate of Incorporation</option>
+									   <option value="Checkout Documents">Checkout Documents</option>
+									<option value="ID_Card_Copies">ID_Card_Copies</option>
+									 <option value="Lease Document">Lease Document</option>
+									 <option value="Memorandum/Articles_of_Association">Memorandum/Articles_of_Association</option>
+									<option value="Pin/Vat_Certificate">Pin/Vat_Certificate</option>
+									 <option value="Unit Handover Photos">Unit Handover Photos</option>
+									 <option value="Pin_Copies">Pin_Copies</option>
+									 <option value="Other Documents">Other Documents</option>
+									 </select>
+								 </div>
+								 </div>
+		 
+								 <div class="cleaner_h5"></div>
+								 <dd class="custuploadblock_js">
+								 <input style="opacity:0; float:left;" name="image" id="photoupload"  
+								 class="transfileform_js" type="file">
+								 </dd>
+								 <iframe name="leiframe" id="leiframe" class="leiframe">
+								 </iframe>
+								 <input type="hidden"  name="soi" value="'.$soi.'"/>
+								 <input type="hidden"  name="sap" value="'.$sap.'"/>
+								 <input type="hidden"  name="tid" value="'.$tid.'"/>
+								 <input type="hidden" id="id" name="id"  value="1"/>
+								 <div class="cleaner_h5"></div>
+								 <button class="btn vd_btn vd_bg-green vd_white" style="float:right;margin-right:20%" type="submit" onclick="uphoto()"><i class="icon-ok"></i>Upload</button>
+								 </form>
+		 
+								 </div>
+								</div>
+							   </div>
+						   </div>
+						 </div>
+						 <!-- Panel Widget --> 
+					   </div>
+					   <!-- col-md-12 --> 
+				 </div>
+					 <!-- row --> 
+					   </div>
+					 
+				 <!-- .vd_content --> 
+			   </div>
+			   <!-- .vd_container -->
+				 <script type="text/javascript">
+			   $(document).ready(function() {
+				   "use strict";
+				   $(".data-tables").dataTable();
+			   } );
+			   </script> ';
+			  
+			 break;
+
+
+			 case 103:
+
+				$param=0;
+				if(!isset($_GET['keyy'])){$_SESSION['links'][]=$id.'-'.$param;end($_SESSION['links']); $keyy= key($_SESSION['links']);}
+				else{$keyy=$_GET['keyy'];}echo "<script> $('#thekey').val('".$keyy."');</script>";
+					  $result = mysql_query("insert into log values('','".$username." accesses  Add/Edit System Variables Panel.','".$username."','".date('YmdHi')."','".date('H:i')."','".date('d/m/Y')."','1')");  
+					  echo'<div class="vd_container" id="container">
+							  <div class="vd_content clearfix">
+					  ';
+				
+						  echo'<div class="vd_content-section clearfix">
+							<div class="row" id="form-basic">
+							  <div class="col-md-6">
+								<div class="panel widget">
+				
+				
+								<h3 style="color:#ffdd17; margin-top:3px">EMPLOYEE ATTENDANCE
+													  
+													  <div id="saveclose" style="width:50px; height:30px;float:right;margin-right:10px;">
+													  <input type="button" value="Exit" id="submit"  style="padding:5px 5px; border-color:#fff; background:#f00; float:right; cursor:pointer;width:50px" class="in_field" onclick="hidenewstude();"/>
+													  </div>
+									  
+													  <div id="saveclose" style="width:80px; height:30px;float:right;margin-right:10px;">
+													  <input type="button" value="Sync Now" id="submit"  style="padding:5px 5px; border-color:#fff; background:#ff3; float:right; cursor:pointer;width:80px" class="in_field" onclick="syncattendance();"/>
+													  </div>
+									  
+													  </h3>
+													  </div>
+									  
+									  
+													<div id="newstude" class="col-sm-12 " style="padding:1%">
+													<div class="cleaner" style="border-bottom:2px solid #75c5cf"></div>
+													
+									  
+											 <div id="title">
+											 <div class="figure1" id="tdate" style="float:left;margin-left:0px;width:100%; border-bottom:1px solid #75c5cf">
+											<b style="float:left;margin-top:5px">Date: </b>
+											 <input id="datepicker3" name="doe" class="in_field" value="'.date('d/m/Y').'"  type="text" readonly="readonly" style="width:20%;float:left; margin-left:10px"> 
+												 <img src="images/zoom.png" style="width:30px; height:30px; float:left; margin-left:10px; cursor:pointer" onclick="showattendance()" title="View Attendance">
+											  
+											 
+											</div>
+											 </div>
+											 
+											   <table>
+												 
+												<tr>
+														<th id="figure1" >PF No</th>
+														<th id="figure1" >Name</th>
+														<th id="figure1" >Action</th>
+												</tr>
+											   
+									  
+									  
+												<div id="display">';
+												$result =mysql_query("select * from attendance where  month='".date('m_Y')."' order by pfno");
+												$num_results = mysql_num_rows($result); 
+												for ($i=0; $i <$num_results; $i++) {
+														$row=mysql_fetch_array($result);
+														if($i%2==0){
+										echo'<div class="normal1"  style="min-height:20px; border-left:1.5px solid #333; cursor:pointer">';
+										}else{
+										  echo'<div  class="normal2" style="min-height:20px;  border-left:1.5px solid #333;cursor:pointer">';
+										} 
+														
+														echo"
+														<tr><td><div id=\"figure2\" style=\"\" >".stripslashes($row['pfno'])."</div></td>
+														<td><div id=\"figure2\" style=\"\" >".stripslashes($row['names'])."</div></td>";
+														$empno=stripslashes($row['pfno']);
+														$code=stripslashes($row['id']);
+														$x=date('d').'c';
+														$status=stripslashes($row[$x]);
+														if($status=='0'){
+														echo"<td><div class=\"figure2\" style=\";padding:3px; background:#f00\" id=\"back".stripslashes($row['id'])."\" >
+														<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
+														<option value=\"0\"  disabled=\"disabled\">Select</option>
+														<option selected=\"selected\" value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
+														<option value=\"1\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
+														<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
+														<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
+														<option  value=\"4\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
+														<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
+														</select></div></td>"; 
+														}
+														else if($status=='1'){
+														echo"<td><div class=\"figure2\" style=\"padding:3px; background:#0f6\" id=\"back".stripslashes($row['id'])."\" >
+														<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
+														<option value=\"0\" disabled=\"disabled\">Select</option>
+														<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
+														<option value=\"1\"  selected=\"selected\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
+														<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
+														<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
+														<option  value=\"4\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
+														<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
+														</select></div></td>"; 
+														}
+														
+														else if($status=='2'){
+														echo"<td><div class=\"figure2\" style=\"padding:3px; background:#0ff\" id=\"back".stripslashes($row['id'])."\" >
+														<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
+														<option value=\"0\" disabled=\"disabled\">Select</option>
+														<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
+														<option value=\"1\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
+														<option  value=\"2\"  selected=\"selected\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
+														<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
+														<option  value=\"4\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
+														<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
+														</select></div></td>"; 
+														}
+														
+														else if($status=='3'){
+														echo"<td><div class=\"figure2\" style=\"padding:3px; background:#ff3\" id=\"back".stripslashes($row['id'])."\" >
+														<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
+														<option value=\"0\" disabled=\"disabled\">Select</option>
+														<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
+														<option value=\"1\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
+														<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
+														<option  value=\"3\"  selected=\"selected\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
+														<option  value=\"4\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
+														<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
+														</select></div></td>"; 
+														}
+									  
+														else if($status=='4'){
+														echo"<td><div class=\"figure2\" style=\"padding:3px; background:#ff3\" id=\"back".stripslashes($row['id'])."\" >
+														<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
+														<option value=\"0\" disabled=\"disabled\">Select</option>
+														<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
+														<option value=\"1\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
+														<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
+														<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
+														<option  value=\"4\"  selected=\"selected\"   onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
+														<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
+														</select></div></td>"; 
+														}
+									  
+														else if($status=='5'){
+														echo"<td><div class=\"figure2\" style=\"padding:3px; background:#ff3\" id=\"back".stripslashes($row['id'])."\" >
+														<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
+														<option value=\"0\" disabled=\"disabled\">Select</option>
+														<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
+														<option value=\"1\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
+														<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
+														<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
+														<option  value=\"4\"   onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
+														<option  value=\"5\" selected=\"selected\"   onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
+														</select></div></td>"; 
+														}
+														
+														
+														
+														else {
+														echo"<td><div class=\"figure2\" style=\"padding:3px;\" id=\"back".stripslashes($row['id'])."\" >
+														<select  style=\"margin:0;padding:0 \"id=\"action".stripslashes($row['id'])."\">
+														<option value=\"0\"  selected=\"selected\" disabled=\"disabled\">Select</option>
+														<option  value=\"0\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Absent</option>
+														<option value=\"1\" onclick=\"checkatt(".stripslashes($row['id']).")\" >Present</option>
+														<option  value=\"2\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >On Leave</option>
+														<option  value=\"3\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Sick Leave</option>
+														<option  value=\"4\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Off</option>
+														<option  value=\"5\"  onclick=\"checkatt(".stripslashes($row['id']).")\" >Half Day Absent</option>
+														</select></div></td>"; 
+														}
+														
+														echo"
+														</div>
+														<div class=\"cleaner\"></div></tr>";
+									  
+									  
+														//check if employee on leave
+									  
+									  
+														$resultx =mysql_query("select * from leaves where endstamp>='".date('Ymd')."' and commstamp<='".date('Ymd')."' and emp='".$empno."' and status=2");
+														$num_resultsx = mysql_num_rows($resultx); 
+														if($num_resultsx>0){
+									  
+														  echo "<script>
+														  $('#back".$code."').css({'background' : '#0ff'});
+														  $('#action".$code."').val(2);</script>";
+														  
+														}
+												}
+										   
+										   
+											 echo'</table></div>
+				
+				
+				
+								</div>
+								<!-- Panel Widget --> 
+							  </div>
+							  <!-- col-md-6 --> 
+				
+				
+							</div>
+							<!-- row --> 
+							  </div>
+							
+				
+				
+							
+						  </div>
+						  <!-- .vd_content-section --> 
+						  
+						</div>
+						<!-- .vd_content --> 
+					  </div>
+					  <!-- .vd_container --> ';
+				
+					   echo "<script>  $( '#month' ).datepicker({ dateFormat: 'mm_yy'});  </script>";
+				
+				
+					break;
 							
 }
 

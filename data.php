@@ -112,7 +112,7 @@ $resulta = mysql_query("insert into log values('0','".$username." inserts data i
 										<script>setTimeout(function() {newemp();},500);</script>';
                                         }else{
 
-											echo'<script>swal("Error","Employee information saved","error")';
+											echo'<script>swal("Success","Employee information saved","success")';
                                         	echo'<script>setTimeout(function() {seeemp(5);},500);</script>';
 
                                         }
